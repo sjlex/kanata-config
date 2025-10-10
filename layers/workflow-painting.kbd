@@ -1,0 +1,25 @@
+;; =============================================================================
+;; Layers
+;; =============================================================================
+
+;; TODO:
+;; Workflow: Painting
+(deflayer (workflow-painting icon assets\icons\workflow-painting.png)
+  @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
+  •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
+  @pth   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
+  @caps  •      •      •      •      •      #||#      •      •      •      •      •      •             @ret
+  @lsft  •      •      •      •      •      #||#      •      •      •      •      •                    @rsft
+  @lctl  @lmet  @lalt  @spc                 #||#                                                @ralt  @rctl
+)
+
+;; =============================================================================
+;; Workflow: Painting
+;; =============================================================================
+
+(defalias
+  pnt (layer-switch workflow-painting)
+
+  pt (layer-switch workflow-painting)
+  pth (layer-while-held workflow-painting)
+)

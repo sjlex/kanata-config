@@ -1,0 +1,60 @@
+;; =============================================================================
+;; Layers
+;; =============================================================================
+
+;; Typography
+(deflayer (typography icon assets\icons\typography.png)
+  @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
+  •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
+  @tph   @tpaah •      •      •      @tp§   #||#      •      @tp„   @tp“   @tp”   @tpmr  @tph   •      •
+  @caps  •      •      @tp‹   @tp›   •      #||#      @tp—   @tp«   @tp»   @tp…   @tp•   •             @ret
+  @lsft  @tp₽   @tp£   @tp€   @tp$   @tp¢   #||#      @tp–   @tp‘   @tp’   •      •                    @rsft
+  @lctl  @lmet  @lalt  @tpspc               #||#                                                @ralt  @rctl
+)
+
+;; =============================================================================
+;; Typography
+;; =============================================================================
+
+(defalias
+  typ (layer-switch typography)
+
+  tp (layer-switch typography)
+  tph (layer-while-held typography)
+)
+
+;; Typography Symbols
+(defalias
+  tpaa (unicode r#"́"#) ;; COMBINING ACUTE ACCENT (U+0301)
+  tpNBS (unicode r#" "#) ;; NO-BREAK SPACE
+
+  tp§ (unicode §)
+  tp‹ (unicode ‹)
+  tp› (unicode ›)
+
+  tp₽ (unicode ₽)
+  tp£ (unicode £)
+  tp€ (unicode €)
+  tp$ (unicode $)
+  tp¢ (unicode ¢)
+
+  tp— (unicode —)
+  tp– (unicode –)
+
+  tp„ (unicode „)
+  tp“ (unicode “)
+  tp” (unicode ”)
+  tp« (unicode «)
+  tp» (unicode »)
+  tp… (unicode …)
+  tp• (unicode •)
+  tp‘ (unicode ‘)
+  tp’ (unicode ’)
+)
+
+(defalias
+  tpaah (tap-hold-press $tap-time $hold-time @tpaa (layer-while-held mouse))
+  tpmr (layer-while-held mouse)
+
+  tpspc (tap-hold-release $tap-time $hold-time @tpNBS @spc)
+)

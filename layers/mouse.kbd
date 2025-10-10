@@ -1,0 +1,87 @@
+;; =============================================================================
+;; Layers
+;; =============================================================================
+
+;; Mouse
+(deflayer (mouse icon assets\icons\mouse.png)
+  @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
+  •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
+  @msh   •      mrgt   @ma↑   mlft   @mwu   #||#      pgup   mlft   @ma↑   mrgt   mmid   @msh   •      •
+  @caps  •      @ma←   @ma↓   @ma→   @mwd   #||#      pgdn   @ma←   @ma↓   @ma→   •      •             @ret
+  @lsft  •      mmid   mlft   mrgt   @mwl   #||#      @mwr   mlft   mrgt   mmid   •                    @rsft
+  @lctl  @lmet  @maltl @spc                 #||#                                                @maltr @rctl
+)
+
+;; Mouse Alternative
+(deflayer (mouse-alt icon assets\icons\mouse-alt.png)
+  @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
+  •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
+  @mah   •      mrgt   @ma↑   mlft   @mwu   #||#      mmid   @mwm   @ma↑   @mwc   mmid   @mah   •      •
+  @caps  •      @ma←   @ma↓   @ma→   @mwd   #||#      @mwsn  @ma←   @ma↓   @ma→   •      •             @ret
+  @lsft  •      mmid   mlft   mrgt   @mwl   #||#      @mwr   mlft   mrgt   mmid   •                    @rsft
+  @lctl  @lmet  @maltl @spc                 #||#                                                @maltr @rctl
+)
+
+;; =============================================================================
+;; Mouse
+;; =============================================================================
+
+(defalias
+  mse (layer-switch mouse)
+
+  ms (layer-switch mouse)
+  msh (layer-while-held mouse)
+)
+
+;; Mouse Wheel
+(defalias
+  mwu (mwheel-up 50 120)
+  mwd (mwheel-down 50 120)
+  mwl (mwheel-left 50 120)
+  mwr (mwheel-right 50 120)
+)
+
+;; Mouse Movement
+(defalias
+  ma↑ (movemouse-accel-up 3 300 1 7)
+  ma← (movemouse-accel-left 3 300 1 7)
+  ma↓ (movemouse-accel-down 3 300 1 7)
+  ma→ (movemouse-accel-right 3 300 1 7)
+)
+
+;; Mouse-Alt
+(defalias
+  maltl (multi
+    (on-press press-vkey vrt-msa)
+    lalt
+    (on-release release-vkey vrt-msa)
+  )
+  maltr (multi
+    (on-press press-vkey vrt-msa)
+    ralt
+    (on-release release-vkey vrt-msa)
+  )
+)
+
+;; =============================================================================
+;; Mouse Alternative
+;; =============================================================================
+
+(defalias
+  msa (layer-switch mouse-alt)
+
+  ma (layer-switch mouse-alt)
+  mah (layer-while-held mouse-alt)
+)
+
+(defvirtualkeys
+  vrt-msa (layer-while-held mouse-alt)
+)
+
+(defalias
+  mwm (multi lmet lalt (unmod (lsft rsft lctl rctl) mlft)) ;; Minimize window
+  mwc (multi lmet lalt (unmod (lsft rsft lctl rctl) mrgt)) ;; Close window
+
+  mwsn (multi lmet lalt (unmod (lsft rsft lctl rctl) pgup)) ;; Next laser stacked window
+  mwat (multi lalt (unmod (lsft rsft lctl rctl lmet rmet) mmid)) ;; Toggle always on top
+)

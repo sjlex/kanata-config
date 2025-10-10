@@ -1,0 +1,39 @@
+;; =============================================================================
+;; Home-row
+;; =============================================================================
+
+;; Home-row: Key States
+(defvirtualkeys
+  vrt-hl3v nop0
+  vrt-hl2v nop0
+  vrt-hl1v nop0
+  ;; ---
+  vrt-hr1v nop0
+  vrt-hr2v nop0
+  vrt-hr3v nop0
+)
+
+;; Home-row Chord
+(deftemplate home-row-side-chord (
+  hr-k1 hr-k2 hr-k3 ;; HR-Keys
+  hr-m1 hr-m2 hr-m3 ;; HR-Mods
+  hr-ks1 hr-ks2 hr-ks3 ;; HR-Keys-State
+)
+  ($hr-k1) (multi
+    (on-press press-vkey $hr-ks1)
+    (tap-hold-release $tap-time $hold-time $hr-k1 $hr-m1)
+    (on-release release-vkey $hr-ks1)
+  )
+
+  ($hr-k2) (multi
+    (on-press press-vkey $hr-ks2)
+    (tap-hold-release $tap-time $hold-time $hr-k2 $hr-m2)
+    (on-release release-vkey $hr-ks2)
+  )
+
+  ($hr-k3) (multi
+    (on-press press-vkey $hr-ks3)
+    (tap-hold-release $tap-time $hold-time $hr-k3 $hr-m3)
+    (on-release release-vkey $hr-ks3)
+  )
+)

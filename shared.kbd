@@ -1,0 +1,38 @@
+;; =============================================================================
+;; Shared Definitions and Templates
+;; =============================================================================
+
+(defalias
+  ;; Clipboard operations with modifier cleanup
+  paste (multi lctl (unmod (lsft rsft lmet rmet lalt ralt) v))
+  copy (multi lctl (unmod (lsft rsft lmet rmet lalt ralt) c))
+  cut (multi lctl (unmod (lsft rsft lmet rmet lalt ralt) x))
+
+  ;; File operations
+  save (multi lctl (unmod (lsft rsft lmet rmet lalt ralt) s))
+
+  ;; Undo/Redo operations
+  undo (multi lctl (unmod (lsft rsft lmet rmet lalt ralt) z))
+  redo (multi lctl lsft (unmod (lmet rmet lalt ralt) z))
+)
+
+(defalias
+  alt-tab (multi lalt (unmod (lsft rsft lctl rctl lmet rmet) tab))
+  window-switch-fast (switch
+    ((or (input real lalt) (input real ralt))) tab break
+    () @alt-tab break
+  )
+)
+
+;; Rapid typing
+;; (defvirtualkeys
+;;   to-base (multi
+;;     (layer-switch qphyx-lat)
+;;   )
+;; )
+;; (defalias
+;;   typing (multi
+;;     (layer-switch qphyx-lat-typing-layer) ;; or ? (one-shot 95 (layer-while-held typing))
+;;     (on-idle 60 tap-vkey to-base)
+;;   )
+;; )

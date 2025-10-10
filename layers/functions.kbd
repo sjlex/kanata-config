@@ -1,0 +1,32 @@
+;; =============================================================================
+;; Layers
+;; =============================================================================
+
+;; Functions
+(deflayer (functions icon assets\icons\functions.png)
+  @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
+  •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
+  @funh  @f10h  f7     f8     f9     f10    #||#      f10    f7     f8     f9     @f10h  @funh  •      •
+  @caps  •      f4     f5     f6     f11    #||#      f11    f4     f5     f6     •      •             @ret
+  @lsft  •      f1     f2     f3     f12    #||#      f12    f1     f2     f3     •                    @rsft
+  @lctl  @lmet  @lalt  @spc                 #||#                                                @ralt  @rctl
+)
+
+;; =============================================================================
+;; Functions
+;; =============================================================================
+
+(defalias
+  fn (layer-switch functions)
+
+  fun (layer-switch functions)
+  funh (layer-while-held functions)
+)
+
+(defalias
+  f10 f10
+)
+
+(defalias
+  f10h (tap-hold-press $tap-time $hold-time @f10 (layer-while-held mouse))
+)

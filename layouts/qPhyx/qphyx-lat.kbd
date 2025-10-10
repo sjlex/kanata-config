@@ -1,0 +1,355 @@
+;; =============================================================================
+;; Layers
+;; =============================================================================
+
+;; qPhyx-lat
+(deflayer (qphyx-lat icon assets\icons\qphyx-lat.png)
+  @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
+  •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
+  @qlhhl @msq   p      @h!    @y!    @x!    #||#      @z!    @w!    @d!    l      @msv   @qlhhr •      •
+  @caps  @e!    @a!    @o!    @i!    @u!    #||#      @m!    @s!    @t!    @r!    @n!    c             @ret
+  @lsft  @j!    @nlcut @nlcpy @k!    •      #||#      g      @f!    @nrcpy @nrcut @b!                  @rsft
+  @lctl  @lmet  @qlatl @spc                 #||#                                                @qlatr @rctl
+)
+
+;; (deflayer qphyx-lat-typing-layer
+;;   @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
+;;   •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
+;;   @lst   q      p      h      y      x      #||#      z      w      d      l      v      •      •      •
+;;   @caps  e      a      o      i      u      #||#      m      s      t      r      n      c             @ret
+;;   @lsft  j      •      •      k      •      #||#      g      f      •      •      b                    @rsft
+;;   @lctl  @lmet  @lalt  @spc                 #||#                                                @ralt  @rctl
+;; )
+
+(deflayer qphyx-lat-hr-left
+  @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
+  •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
+  @qlhhl @msq   p      @h!    @y!    @x!    #||#      z      w      d      l      v      @qlhhr •      •
+  @caps  @e!    @a!    @o!    @i!    @u!    #||#      m      s      t      r      n      c             @ret
+  @lsft  @j!    @nlcut @nlcpy @k!    •      #||#      g      f      •      •      b                    @rsft
+  @lctl  @lmet  @qlatl @spc-qll             #||#                                                @qlatr @rctl
+)
+
+(deflayer qphyx-lat-hr-right
+  @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
+  •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
+  @qlhhl q      p      h      y      x      #||#      @z!    @w!    @d!    l      @msv   @qlhhr •      •
+  @caps  e      a      o      i      u      #||#      @m!    @s!    @t!    @r!    @n!    c             @ret
+  @lsft  j      •      •      k      •      #||#      g      @f!    @nrcpy @nrcut @b!                  @rsft
+  @lctl  @lmet  @qlatl @spc-qlr             #||#                                                @qlatr @rctl
+)
+
+;; =============================================================================
+;; Definitions
+;; =============================================================================
+
+;; Home-row keys
+(defvar
+  qphyx-lat-hl3k a
+  qphyx-lat-hl2k o
+  qphyx-lat-hl1k i
+  ;; ---
+  qphyx-lat-hr1k s
+  qphyx-lat-hr2k t
+  qphyx-lat-hr3k r
+)
+
+;; Modifier assignments for home-row keys
+(defvar
+  qphyx-lat-hl3m lalt
+  qphyx-lat-hl2m lctl
+  qphyx-lat-hl1m lsft
+  ;; ---
+  qphyx-lat-hr1m lsft
+  qphyx-lat-hr2m lctl
+  qphyx-lat-hr3m lalt
+)
+
+;; Actual physical key positions for home-row
+(defvar
+  qphyx-lat-hl3k-real s
+  qphyx-lat-hl2k-real d
+  qphyx-lat-hl1k-real f
+  ;; ---
+  qphyx-lat-hr1k-real j
+  qphyx-lat-hr2k-real k
+  qphyx-lat-hr3k-real l
+)
+
+;; Home-row groups
+(defvar
+  qphyx-lat-hrk-left (a o i)
+  qphyx-lat-hrk-right (s t r)
+  qphyx-lat-hrk-all (
+    a o i
+    s t r
+  )
+)
+
+;; =============================================================================
+;; qPhyx-lat
+;; =============================================================================
+
+(defalias
+  qpl (layer-switch qphyx-lat)
+
+  ql (layer-switch qphyx-lat)
+  qlh (layer-while-held qphyx-lat)
+)
+
+;; Left Side
+(defalias
+  ;; Bypass unused chord bindings
+  spc-qll (multi
+    (t! bypass-unused-bind qphyx-lat-left-chord navigation)
+    (t! bypass-unused-bind qphyx-lat-nav-alt-left-chord navigation)
+    (t! bypass-unused-bind qphyx-lat-nav-left-chord navigation)
+  )
+
+  ;; Left hold key for sticky home-row modifiers
+  qlhhl (t! home-row-hold-key (chord qphyx-lat-left-chord hr-hold))
+
+  ;; Mouse
+  msq (multi
+    (t! mouse-key
+      (chord qphyx-lat-left-chord mouse)
+      $qphyx-lat-hr1k-real $qphyx-lat-hr2k-real $qphyx-lat-hr3k-real
+    )
+    (t! mouse-alt-key lalt)
+  )
+
+  ;; Left-Alt
+  qlatl (t! mouse-alt-key-mod lalt (chord qphyx-lat-left-chord lalt-mod))
+
+  ;; Layer Activation Keys
+  e! (chord qphyx-lat-nav-alt-left-chord wrf)    ;; Workflow layer
+  h! (chord qphyx-lat-left-chord num)            ;; Numbers layer
+  y! (chord qphyx-lat-left-chord sym)            ;; Symbols layer
+  x! (chord qphyx-lat-typography-left-chord typ) ;; Typography layer
+  u! (chord qphyx-lat-functions-left-chord fun)  ;; Functions layer
+
+  ;; Editing keys
+  j! (chord qphyx-lat-nav-left-chord save)    ;; Save
+  nlcut (chord qphyx-lat-nav-left-chord cut)  ;; Cut
+  nlcpy (chord qphyx-lat-nav-left-chord copy) ;; Copy
+  k! (chord qphyx-lat-nav-left-chord paste)   ;; Paste
+
+  ;; Home-Row Keys
+  a! (chord qphyx-lat-left-chord $qphyx-lat-hl3k)
+  o! (chord qphyx-lat-left-chord $qphyx-lat-hl2k)
+  i! (chord qphyx-lat-left-chord $qphyx-lat-hl1k)
+)
+
+;; Right Side
+(defalias
+  ;; Home-Row Keys
+  s! (chord qphyx-lat-right-chord $qphyx-lat-hr1k)
+  t! (chord qphyx-lat-right-chord $qphyx-lat-hr2k)
+  r! (chord qphyx-lat-right-chord $qphyx-lat-hr3k)
+
+  ;; Editing keys
+  f! (chord qphyx-lat-nav-right-chord paste)   ;; Paste
+  nrcpy (chord qphyx-lat-nav-right-chord copy) ;; Copy
+  nrcut (chord qphyx-lat-nav-right-chord cut)  ;; Cut
+  b! (chord qphyx-lat-nav-right-chord save)    ;; Save
+
+  ;; Layer Activation Keys
+  n! (chord qphyx-lat-nav-alt-right-chord wrf)     ;; Workflow layer
+  d! (chord qphyx-lat-right-chord num)             ;; Numbers layer
+  w! (chord qphyx-lat-right-chord sym)             ;; Symbols layer
+  z! (chord qphyx-lat-typography-right-chord typ)  ;; Typography layer
+  m! (chord qphyx-lat-functions-right-chord fun)   ;; Functions layer
+
+  ;; Right hold key for sticky home-row modifiers
+  qlhhr (t! home-row-hold-key (chord qphyx-lat-right-chord hr-hold))
+
+  ;; Mouse
+  msv (multi
+    (t! mouse-key
+      (chord qphyx-lat-right-chord mouse)
+      $qphyx-lat-hl1k-real $qphyx-lat-hl2k-real $qphyx-lat-hl3k-real
+    )
+    (t! mouse-alt-key lalt)
+  )
+
+  ;; Right-Alt
+  qlatr (t! mouse-alt-key-mod ralt (chord qphyx-lat-right-chord ralt-mod))
+
+  ;; Bypass unused chord bindings
+  spc-qlr (multi
+    (t! bypass-unused-bind qphyx-lat-right-chord navigation)
+    (t! bypass-unused-bind qphyx-lat-nav-alt-right-chord navigation)
+    (t! bypass-unused-bind qphyx-lat-nav-right-chord navigation)
+  )
+)
+
+;; =============================================================================
+;; Configures key behavior for optimal one-handed and alternating-hand usage:
+;; =============================================================================
+;; - If a key is tapped and held solely on one half of the keyboard, it acts
+;;   as a `tap-hold-press` for quick layer switching (using `layer-while-held`).
+;;   The key press on the new layer is also immediately triggered.
+;;
+;; - If a key combination or alternating presses between the left and right halves
+;;   occur, it uses `tap-hold-release` to prevent accidental layer activation.
+;;   This ensures that only a deliberate release after a hold will trigger
+;;   the layer change, avoiding false positives in more complex typing scenarios.
+;; -----------------------------------------------------------------------------
+
+;; Left Side
+;; Navigation hotkeys
+(defchords qphyx-lat-nav-left-chord $chord-time
+  (save) j
+  (cut) •
+  (copy) •
+  (paste) k
+
+  (save navigation) @save
+  (cut navigation) @cut
+  (copy navigation) @copy
+  (paste navigation) @paste
+
+  (copy paste navigation) @cut
+)
+
+;; Navigation Alternative
+(defchords qphyx-lat-nav-alt-left-chord $chord-time
+  (wrf) (tap-hold-release $tap-time $hold-time e (layer-while-held workflow))
+  (navigation wrf) (layer-while-held navigation-alt)
+)
+
+;; Typography
+(defchords qphyx-lat-typography-left-chord $chord-time
+  (typ) (tap-hold-release $tap-time $hold-time x (layer-while-held typography))
+)
+
+;; Functions
+(defchords qphyx-lat-functions-left-chord $chord-time
+  (fun) (tap-hold-release $tap-time $hold-time u (layer-while-held functions))
+)
+
+;; Left Chords
+(defchords qphyx-lat-left-chord $chord-time
+  ;; Numbers
+  (num) (tap-hold-release $tap-time $hold-time h (layer-while-held numbers))
+  (num $qphyx-lat-hl1k) (layer-while-held quick-math)
+
+  ;; Symbols
+  (sym) (tap-hold-release $tap-time $hold-time y (layer-while-held symbols))
+  (sym num) (layer-while-held symbols-math)
+
+  ;; Tab
+  (t! home-row-hold-tab-fast-chord
+    hr-hold
+    $qphyx-lat-hl1k $qphyx-lat-hl2k $qphyx-lat-hl3k
+    $qphyx-lat-hl1m $qphyx-lat-hl2m $qphyx-lat-hl3m
+    vrt-hl1s vrt-hl2s vrt-hl3s
+  )
+
+  ;; Mouse Alternative
+  (t! mouse-alt-chord mouse lalt-mod)
+
+  ;; Mouse
+  (t! mouse-chord
+    mouse
+    q
+    $qphyx-lat-hl1k $qphyx-lat-hl2k $qphyx-lat-hl3k
+    $qphyx-lat-hl1m $qphyx-lat-hl2m $qphyx-lat-hl3m
+    vrt-hl1s vrt-hl2s vrt-hl3s
+  )
+
+  ;; Home-Row
+  (t! home-row-side-chord
+    $qphyx-lat-hl1k $qphyx-lat-hl2k $qphyx-lat-hl3k
+    $qphyx-lat-hl1m $qphyx-lat-hl2m $qphyx-lat-hl3m
+    vrt-hl1v vrt-hl2v vrt-hl3v
+  )
+
+  ;; Navigation
+  (t! navigation-chord
+    navigation
+    spc
+    $qphyx-lat-hl1k $qphyx-lat-hl2k $qphyx-lat-hl3k
+    $qphyx-lat-hl1m $qphyx-lat-hl2m $qphyx-lat-hl3m
+    vrt-hl1s vrt-hl2s vrt-hl3s
+  )
+)
+
+;; Right Side
+;; Navigation hotkeys
+(defchords qphyx-lat-nav-right-chord $chord-time
+  (save) b
+  (cut) •
+  (copy) •
+  (paste) f
+
+  (save navigation) @save
+  (cut navigation) @cut
+  (copy navigation) @copy
+  (paste navigation) @paste
+
+  (copy paste navigation) @cut
+)
+
+;; Navigation Alternative
+(defchords qphyx-lat-nav-alt-right-chord $chord-time
+  (wrf) (tap-hold-release $tap-time $hold-time n (layer-while-held workflow))
+  (navigation wrf) (layer-while-held navigation-alt)
+)
+
+;; Typography
+(defchords qphyx-lat-typography-right-chord $chord-time
+  (typ) (tap-hold-release $tap-time $hold-time z (layer-while-held typography))
+)
+
+;; Functions
+(defchords qphyx-lat-functions-right-chord $chord-time
+  (fun) (tap-hold-release $tap-time $hold-time m (layer-while-held functions))
+)
+
+;; Right Chords
+(defchords qphyx-lat-right-chord $chord-time
+  ;; Numbers
+  (num) (tap-hold-release $tap-time $hold-time d (layer-while-held numbers))
+  (num $qphyx-lat-hr1k) (layer-while-held quick-math)
+
+  ;; Symbols
+  (sym) (tap-hold-release $tap-time $hold-time w (layer-while-held symbols))
+  (sym num) (layer-while-held symbols-math)
+
+  ;; Tab
+  (t! home-row-hold-tab-fast-chord
+    hr-hold
+    $qphyx-lat-hr1k $qphyx-lat-hr2k $qphyx-lat-hr3k
+    $qphyx-lat-hr1m $qphyx-lat-hr2m $qphyx-lat-hr3m
+    vrt-hr1s vrt-hr2s vrt-hr3s
+  )
+
+  ;; Mouse Alternative
+  (t! mouse-alt-chord mouse ralt-mod)
+
+  ;; Mouse
+  (t! mouse-chord
+    mouse
+    v
+    $qphyx-lat-hr1k $qphyx-lat-hr2k $qphyx-lat-hr3k
+    $qphyx-lat-hr1m $qphyx-lat-hr2m $qphyx-lat-hr3m
+    vrt-hr1s vrt-hr2s vrt-hr3s
+  )
+
+  ;; Home-Row
+  (t! home-row-side-chord
+    $qphyx-lat-hr1k $qphyx-lat-hr2k $qphyx-lat-hr3k
+    $qphyx-lat-hr1m $qphyx-lat-hr2m $qphyx-lat-hr3m
+    vrt-hr1v vrt-hr2v vrt-hr3v
+  )
+
+  ;; Navigation
+  (t! navigation-chord
+    navigation
+    spc
+    $qphyx-lat-hr1k $qphyx-lat-hr2k $qphyx-lat-hr3k
+    $qphyx-lat-hr1m $qphyx-lat-hr2m $qphyx-lat-hr3m
+    vrt-hr1s vrt-hr2s vrt-hr3s
+  )
+)

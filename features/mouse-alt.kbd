@@ -1,0 +1,41 @@
+;; =============================================================================
+;; Mouse-Alt
+;; =============================================================================
+
+;; Mouse-Alt Chord
+(deftemplate mouse-alt-chord (
+  mouse-chord-key ;; Chord key
+  mouse-alt-chord-alt-key ;; Chord alt key
+)
+  ($mouse-alt-chord-alt-key $mouse-chord-key) (multi
+    (on-press press-vkey vrt-msa)
+    (layer-while-held mouse)
+    (on-release release-vkey vrt-msa)
+  )
+)
+
+;; Mouse-Alt Key Template
+(deftemplate mouse-alt-key (
+  mouse-alt-chord-alt-key ;; Chord alt key
+)
+  (switch
+    ((input real $mouse-alt-chord-alt-key)) (multi
+      (on-press press-vkey vrt-msa)
+      (layer-while-held mouse)
+      (on-release release-vkey vrt-msa)
+    ) break
+    () nop0 break
+  )
+)
+
+;; Mouse-Alt Template with Mod-Key
+(deftemplate mouse-alt-key-mod (
+  mouse-alt-key
+  mouse-alt-key-action
+)
+  (multi
+    $mouse-alt-key
+    $mouse-alt-key-action
+    (on-release release-vkey vrt-msa)
+  )
+)

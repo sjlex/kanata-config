@@ -1,0 +1,45 @@
+;; =============================================================================
+;; Global Configuration
+;; =============================================================================
+
+(defcfg
+  process-unmapped-keys yes
+  log-layer-changes no ;; yes
+  concurrent-tap-hold true
+  override-release-on-activation yes
+  movemouse-smooth-diagonals yes
+  danger-enable-cmd yes
+  rapid-event-delay 4
+
+  tray-icon "./assets/icons/base.png"
+)
+
+(defvar
+  ;; Alternative timing presets
+  ;; tap-time 300
+  ;; hold-time 400
+
+  tap-time 150
+  hold-time 300
+
+  chord-time 600
+  tap-dance-time 300
+)
+
+;; Commands with args
+(defvar
+  cmd-lock-station (cmd "rundll32.exe" user32.dll,LockWorkStation)
+  cmd-sleep (cmd "rundll32.exe" powrprof.dll,SetSuspendState 0,1,0)
+
+  cmd-sublime-text (cmd "C:\Program Files\Sublime Text\sublime_text.exe" "-n")
+  cmd-qalculate (cmd "C:\Program Files\Qalculate\qalculate-qt.exe")
+  cmd-keepassxc (cmd "C:\Program Files\KeePassXC\KeePassXC.exe")
+  cmd-chrome (cmd "C:\Program Files\Google\Chrome\Application\chrome.exe")
+  cmd-onecommander (cmd "C:\Program Files\OneCommander\OneCommander.exe")
+
+  ;; TODO: Open Obsidian vault and create a unique note in a new window.
+  cmd-obsidian-personal-vault (cmd powershell -Command 'Start-Process -FilePath "obsidian://open?vault=personal-vault"')
+
+  ;; TODO: Unzip the current file.
+  cmd-unzip nop0
+)

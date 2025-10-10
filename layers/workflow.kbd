@@ -1,0 +1,64 @@
+;; =============================================================================
+;; Layers
+;; =============================================================================
+
+;; Workflow
+(deflayer (workflow icon assets\icons\workflow.png)
+  @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
+  •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
+  @wfh   @wflkh @wfbl  @wfqcl @wfkp  prtsc  #||#      @wffp  mute   next   pp     @msh   @wfh   •      •
+  @caps  •      @wfuz  @wfob  @wfsbl @wfbr  #||#      @wffn  @wfmsd prev   @wfmsu •      •             @ret
+  @lsft  •      •      •      @wfex  •      #||#      @wffs  •      •      •      •                    @rsft
+  @lctl  @lmet  @lalt  @spc                 #||#                                                @ralt  @rctl
+)
+
+;; =============================================================================
+;; Workflow
+;; =============================================================================
+
+(defalias
+  wrf (layer-switch workflow)
+
+  wf (layer-switch workflow)
+  wfh (layer-while-held workflow)
+)
+
+;; Commands
+(defalias
+  wfmsu (multi lctl lsft lalt (unmod (lmet rmet) kp+)) ;; Music-Seek ahead
+  wfmsd (multi lctl lsft lalt (unmod (lmet rmet) kp-)) ;; Music-Seek back
+
+  wflk $cmd-lock-station ;; Lock Station
+  wfslp $cmd-sleep ;; Sleep
+  wfbl (multi lctl lsft (unmod (lmet rmet lalt ralt) q)) ;; Black-Out desktop
+
+  wfsbl $cmd-sublime-text ;; Sublime Text
+  wfqcl $cmd-qalculate ;; Qalculate
+  wfkp $cmd-keepassxc ;; KeePassXC
+
+  ;; TODO: Open Obsidian vault and create a unique note in a new window.
+  wfob $cmd-obsidian-personal-vault
+
+  wfbr $cmd-chrome ;; Chrome
+  wfex $cmd-onecommander ;; OneCommander
+
+  ;; TODO: Unzip the current file.
+  wfuz $cmd-unzip
+
+  wffn (multi lctl lsft lalt (unmod (lmet rmet) f9))  ;; Fan-Control: Normal
+  wffs (multi lctl lsft lalt (unmod (lmet rmet) f10)) ;; Fan-Control: Silence
+  wffp (multi lctl lsft lalt (unmod (lmet rmet) f11)) ;; Fan-Control: Performance
+  wffg (multi lctl lsft lalt (unmod (lmet rmet) f12)) ;; Fan-Control: Game
+)
+
+(defalias
+  ;; Lock Station
+  wflkh (tap-hold-press $tap-time $hold-time
+    (multi
+      @unmod
+      @base
+      @wflk
+    )
+    (layer-while-held mouse)
+  )
+)

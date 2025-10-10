@@ -1,0 +1,47 @@
+;; =============================================================================
+;; Mouse Feature
+;; =============================================================================
+
+;; Mouse Chord
+(deftemplate mouse-chord (
+  mouse-chord-key ;; Chord key
+  mouse-key-action ;; Key action
+
+  hr-k1 hr-k2 hr-k3 ;; HR-Keys
+  hr-m1 hr-m2 hr-m3 ;; HR-Mods
+  hr-ms1 hr-ms2 hr-ms3 ;; HR-Mods-State
+)
+  (t! home-row-sticky-chord
+    ;; Chord key
+    $mouse-chord-key
+
+    ;; Key action
+    $mouse-key-action
+
+    ;; Chord action
+    (layer-while-held mouse)
+
+    $hr-k1 $hr-k2 $hr-k3 ;; HR-Keys
+    $hr-m1 $hr-m2 $hr-m3 ;; HR-Mods
+    $hr-ms1 $hr-ms2 $hr-ms3 ;; HR-Mods-State
+  )
+)
+
+;; Mouse Key Template
+(deftemplate mouse-key (
+  mouse-key-action ;; Key action
+  hr-kr1 hr-kr2 hr-kr3 ;; Physical home-row keys positions for early tap detection
+)
+  (tap-hold-press $tap-time $hold-time
+    $mouse-key-action
+    (multi
+      ;; Early tap detection
+      (t! hr-early-tap $mouse-key-action $hr-kr1 $hr-kr2 $hr-kr3)
+
+      (layer-while-held mouse)
+
+      (t! hr-stick)  ;; Enable sticky modifiers
+      (t! hr-unstick) ;; Disable sticky modifiers on release
+    )
+  )
+)

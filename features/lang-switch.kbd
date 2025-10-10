@@ -1,0 +1,57 @@
+;; =============================================================================
+;; Switch language
+;; =============================================================================
+
+(defvirtualkeys
+  ;; Switch language (virtual)
+  vrt-en nop0
+  vrt-ru nop0
+
+  ;; Switch language (OS)
+  vrt-win-en (multi lctl lsft (unmod (lmet rmet lalt ralt) 1))
+  vrt-win-ru (multi lctl lsft (unmod (lmet rmet lalt ralt) 2))
+
+  ;; Switch language (Layouts)
+  vrt-lang-layer-en (layer-switch qphyx-lat)
+  vrt-lang-layer-ru (layer-switch qphyx-cyr)
+
+  ;; DEPRECATED:
+  ;; vrt-layer-qwerty (layer-switch qwerty)
+  ;; vrt-layer-cyrillic (layer-switch cyrillic)
+
+  ;; Switch language (virtual)
+  vrt-lang-virt-en (multi
+    (on-press press-vkey vrt-en)
+    (on-press release-vkey vrt-ru)
+  )
+  vrt-lang-virt-ru (multi
+    (on-press press-vkey vrt-ru)
+    (on-press release-vkey vrt-en)
+  )
+
+  ;; Switch language (OS + Layout)
+  vrt-lang-os-en (multi
+    (on-press tap-vkey vrt-win-en)
+    (on-press tap-vkey vrt-lang-layer-en)
+  )
+  vrt-lang-os-ru (multi
+    (on-press tap-vkey vrt-win-ru)
+    (on-press tap-vkey vrt-lang-layer-ru)
+  )
+
+  ;; DEPRECATED:
+  ;; vrt-lang-os-qwerty (multi
+  ;;   (on-press tap-vkey vrt-win-en)
+  ;;   (on-press tap-vkey vrt-layer-qwerty)
+  ;; )
+  ;; vrt-lang-os-cyrillic (multi
+  ;;   (on-press tap-vkey vrt-win-ru)
+  ;;   (on-press tap-vkey vrt-layer-cyrillic)
+  ;; )
+)
+
+;; Switch language
+(defalias
+  qlat (on-press tap-vkey vrt-lang-layer-en)
+  qcyr (on-press tap-vkey vrt-lang-layer-ru)
+)

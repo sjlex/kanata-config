@@ -1,0 +1,162 @@
+;; =============================================================================
+;; Layers
+;; =============================================================================
+
+;; Numbers
+(deflayer (numbers icon assets\icons\numbers.png)
+  @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
+  •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
+  @nbh   @nbml  @nb7   @nb8   @nb9h  @nb,   #||#      @nb,   @nbn7h @nbn8  @nbn9  @nbmr  @nbh   •      •
+  @caps  •      @nb4   @nb5   @nb6h  @nb.   #||#      @nb.   @nbn4h @nbn5  @nbn6  •      •             @ret
+  @lsft  •      @nb1   @nb2   @nb3   @nb0   #||#      @nbn0  @nbn1  @nbn2  @nbn3  •                    @rsft
+  @lctl  @lmet  @lalt  @spc                 #||#                                                @ralt  @rctl
+)
+
+;; Quick Math
+(deflayer (quick-math icon assets\icons\quick-math.png)
+  @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
+  •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
+  @qmh   @qm%h  @qm^   @qmn/  @qmn*  @qm|   #||#      @qm|   @qm*   @qm/   @qm^   @qm%h  @qmh   •      •
+  @caps  •      @qm=   @qmn-  @qmn+  @qm&   #||#      @qm&   @qm+   @qm-   @qm=   •      •             @ret
+  @lsft  •      •      @qm<   @qm>   @qm!   #||#      @qm!   @qm<   @qm>   •      •                    @rsft
+  @lctl  @lmet  @lalt  @spc                 #||#                                                @ralt  @rctl
+)
+
+;; Symbols Math
+(deflayer (symbols-math icon assets\icons\symbols-math.png)
+  @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
+  •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
+  @smmh  @smmml @smm⌀  @smm↑  @smm°  •      #||#      •      @smm·  @smm÷  @smm×  @smm‰h @smmh  •      •
+  @caps  •      @smm←  @smm↓  @smm→  •      #||#      @smm±  @smm+  @smm−  @smm≠  @smm≈  •             @ret
+  @lsft  •      @smm¹  @smm²  @smm³  •      #||#      •      @smm′  @smm″  •      •                    @rsft
+  @lctl  @lmet  @lalt  @spc                 #||#                                                @ralt  @rctl
+)
+
+;; =============================================================================
+;; Numbers
+;; =============================================================================
+
+(defalias
+  num (layer-switch numbers)
+
+  nb (layer-switch numbers)
+  nbh (layer-while-held numbers)
+)
+
+(defalias
+  nb1 1
+  nb2 2
+  nb3 3
+  nb4 4
+  nb5 5
+  nb6 6
+  nb7 7
+  nb8 8
+  nb9 9
+  nb0 0
+
+  nbn1 kp1
+  nbn2 kp2
+  nbn3 kp3
+  nbn4 kp4
+  nbn5 kp5
+  nbn6 kp6
+  nbn7 kp7
+  nbn8 kp8
+  nbn9 kp9
+  nbn0 kp0
+)
+
+(defalias
+  nbml (layer-while-held mouse)
+  nbmr (layer-while-held mouse)
+
+  nb6h (tap-hold-release $tap-time $hold-time @nb6 (layer-while-held quick-math))
+  nbn4h (tap-hold-release $tap-time $hold-time @nbn4 (layer-while-held quick-math))
+  nb9h (tap-hold-release $tap-time $hold-time @nb9 (layer-while-held symbols-math))
+  nbn7h (tap-hold-release $tap-time $hold-time @nbn7 (layer-while-held symbols-math))
+)
+
+;; =============================================================================
+;; Quick Math
+;; =============================================================================
+
+(defalias
+  qmt (layer-switch quick-math)
+
+  qm (layer-switch quick-math)
+  qmh (layer-while-held quick-math)
+)
+
+;; Symbols Math
+(defalias
+  qm% S-5
+  qm^ S-6
+  qm< S-,
+  qm> S-.
+  qm| S-\
+  qm& S-7
+  qm! S-1
+  qm- -
+  qm+ S-=
+  qm* S-8
+  qm/ /
+  qm= =
+  nb, ,
+  nb. .
+
+  qmn/ kp/
+  qmn* kp*
+  qmn- kp-
+  qmn+ kp+
+)
+
+(defalias
+  qm%h (tap-hold-press $tap-time $hold-time @qm% (layer-while-held mouse))
+)
+
+;; =============================================================================
+;; Symbols Math
+;; =============================================================================
+
+(defalias
+  typm (layer-switch symbols-math)
+
+  smm (layer-switch symbols-math)
+  smmh (layer-while-held symbols-math)
+)
+
+;; Symbols Math
+(defalias
+  smm⌀ (unicode ⌀)
+  smm° (unicode °)
+
+  smm↑ (unicode ↑)
+  smm← (unicode ←)
+  smm↓ (unicode ↓)
+  smm→ (unicode →)
+
+  smm¹ (unicode ¹)
+  smm² (unicode ²)
+  smm³ (unicode ³)
+
+  smm± (unicode ±)
+
+  smm· (unicode ·)
+  smm÷ (unicode ÷)
+  smm× (unicode ×)
+  smm+ (unicode +)
+  smm− (unicode −)
+  smm‰ (unicode ‰)
+
+  smm≠ (unicode ≠)
+  smm≈ (unicode ≈)
+
+  smm′ (unicode ′)
+  smm″ (unicode ″)
+)
+
+(defalias
+  smmml (layer-while-held mouse)
+  smm‰h (tap-hold-press $tap-time $hold-time @smm‰ (layer-while-held mouse))
+)

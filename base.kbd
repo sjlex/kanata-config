@@ -1,0 +1,53 @@
+;; =============================================================================
+;; Base Definitions
+;; =============================================================================
+
+(defalias
+  bs (on-press tap-vkey vrt-lang-layer-en)
+  base (on-press tap-vkey vrt-lang-layer-en)
+)
+
+(defchordsv2
+  ;; Live-reload the currently-used configuration
+  (spc grv) lrld $chord-time all-released ()
+)
+
+;; Virtual nop0-9
+(defvirtualkeys
+  vrt-nop0 nop0
+  vrt-nop1 nop1
+  vrt-nop2 nop2
+  vrt-nop3 nop3
+  vrt-nop4 nop4
+  vrt-nop5 nop5
+  vrt-nop6 nop6
+  vrt-nop7 nop7
+  vrt-nop8 nop8
+  vrt-nop9 nop9
+)
+
+(defalias
+  ret ret
+  esc esc
+  bspc bspc
+
+  lctl lctl
+  rctl rctl
+
+  lalt lalt
+  ralt ralt
+
+  lsft lsft
+  rsft rsft
+
+  lmet lmet
+  rmet rmet
+)
+
+;; Hold for Hub, tap for reset modifier keys and switch to the base layer
+(defalias
+  caps (tap-hold-press $tap-time $hold-time
+    (multi @unmod @base)
+    (layer-while-held hub)
+  )
+)

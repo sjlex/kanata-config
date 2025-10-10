@@ -1,0 +1,103 @@
+;; =============================================================================
+;; Layers
+;; =============================================================================
+
+;; Navigation
+(deflayer (navigation icon assets\icons\navigation.png)
+  @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
+  •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
+  @nvh   @nvesc ret    @nlu   bspc   tab    #||#      tab    ret    @nru   bspc   @nvesc @nvh   •      •
+  @caps  @nvah  @nll   @nld   @nlr   del    #||#      del    @nrl   @nrd   @nrr   @nvah  •             @ret
+  @lsft  @nsav  @ncut  @ncpy  @npst  @nudo  #||#      @nrdo  @npst  @ncpy  @ncut  @nsav                @rsft
+  @lctl  @lmet  @lalt  @spc                 #||#                                                @ralt  @rctl
+)
+
+;; Navigation Alternative
+(deflayer (navigation-alt icon assets\icons\navigation-alt.png)
+  @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
+  •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
+  @nvah  •      home   @nahu  end    @natl  #||#      @natl  home   @nahu  end    ins    @nvah  •      •
+  @caps  •      @nslr  @nahd  @nsll  @natr  #||#      @natr  @nslr  @nahd  @nsll  •      •             @ret
+  @lsft  •      •      •      •      •      #||#      •      @natl  @natr  •      •                    @rsft
+  @lctl  @lmet  @lalt  @spc                 #||#                                                @ralt  @rctl
+)
+
+;; =============================================================================
+;; Navigation
+;; =============================================================================
+
+(defalias
+  nav (layer-switch navigation)
+
+  nv (layer-switch navigation)
+  nvh (layer-while-held navigation)
+)
+
+;; Basic cursor movement
+(defalias
+  nlu up
+  nll left
+  nld down
+  nlr right
+  ;; ---
+  nru up
+  nrl left
+  nrd down
+  nrr right
+)
+
+;; Editing operations
+(defalias
+  npst (chord nav-chord paste)
+  ncpy (chord nav-chord copy)
+  ncut @cut
+
+  nsav @save
+
+  nudo @undo
+  nrdo @redo
+)
+
+;; Text selection
+(defalias
+  nslr (multi lctl lsft (unmod (lmet rmet lalt ralt) pgup))
+  nsll (multi lctl lsft (unmod (lmet rmet lalt ralt) pgdn))
+)
+
+;; Esc
+(defalias
+  nvesc (tap-hold-press $tap-time $hold-time esc (layer-while-held mouse))
+)
+
+;; Spc
+(defalias
+  spc (t! navigation-key spc)
+)
+
+;; Navigation hotkeys
+(defchords nav-chord $chord-time
+  (copy) @copy
+  (paste) @paste
+  (copy paste) @cut
+)
+
+;; =============================================================================
+;; Navigation Alternative
+;; =============================================================================
+
+(defalias
+  nava (layer-switch navigation-alt)
+
+  nva (layer-switch navigation-alt)
+  nvah (layer-while-held navigation-alt)
+)
+
+(defalias
+  ;; History navigation
+  nahu fwd ;; Browser/app history forward
+  nahd bck ;; Browser/app history back
+
+  ;; Tab navigation
+  natr (multi lctl (unmod (lsft rsft lmet rmet lalt ralt) tab)) ;; tab-nav next
+  natl (multi lctl lsft (unmod (lmet rmet lalt ralt) tab)) ;; tab-nav prev
+)

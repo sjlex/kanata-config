@@ -1,0 +1,127 @@
+;; =============================================================================
+;; Home-row Sticky
+;; =============================================================================
+
+;; Home-row: Sticky Key States
+(defvirtualkeys
+  vrt-hl3s lalt
+  vrt-hl2s lctl
+  vrt-hl1s lsft
+  ;; ---
+  vrt-hr1s lsft
+  vrt-hr2s lctl
+  vrt-hr3s lalt
+)
+
+;; Stick the home row
+(defalias
+  hr-stick (t! hr-stick)
+)
+
+(deftemplate hr-stick ()
+  (switch
+    ((input virtual vrt-hl3v)) (on-press press-vkey vrt-hl3s) fallthrough
+    ((input virtual vrt-hl2v)) (on-press press-vkey vrt-hl2s) fallthrough
+    ((input virtual vrt-hl1v)) (on-press press-vkey vrt-hl1s) fallthrough
+    ;; ---
+    ((input virtual vrt-hr1v)) (on-press press-vkey vrt-hr1s) fallthrough
+    ((input virtual vrt-hr2v)) (on-press press-vkey vrt-hr2s) fallthrough
+    ((input virtual vrt-hr3v)) (on-press press-vkey vrt-hr3s) fallthrough
+    () nop0 break
+  )
+)
+
+;; Unstick the home row
+(deftemplate hr-unstick ()
+  (on-release tap-vkey hr-unstick)
+)
+
+(defvirtualkeys
+  hr-unstick (multi
+    (on-press release-vkey vrt-hl3s)
+    (on-press release-vkey vrt-hl2s)
+    (on-press release-vkey vrt-hl1s)
+    ;; ---
+    (on-press release-vkey vrt-hr1s)
+    (on-press release-vkey vrt-hr2s)
+    (on-press release-vkey vrt-hr3s)
+  )
+)
+
+;; Early tap detection with Home-row
+(deftemplate hr-early-tap (
+  key-action ;; Key action
+  hr-kr1 hr-kr2 hr-kr3 ;; HR-Keys real
+)
+  (switch
+    ((input real $hr-kr1)) $key-action break
+    ((input real $hr-kr2)) $key-action break
+    ((input real $hr-kr3)) $key-action break
+    () nop0 break
+  )
+)
+
+;; Home-row Sticky Chord
+(deftemplate home-row-sticky-chord (
+  chord-key ;; Chord key
+  key-action ;; Key action
+  chord-action ;; Chord action
+
+  hr-k1 hr-k2 hr-k3 ;; HR-Keys
+  hr-m1 hr-m2 hr-m3 ;; HR-Mods
+  hr-ms1 hr-ms2 hr-ms3 ;; HR-Mods-State
+)
+  ;; Target key
+  ($chord-key) $key-action
+
+  ;; k1
+  ($hr-k1 $chord-key) (multi
+    (on-press press-vkey $hr-ms1) $hr-m1 (on-release release-vkey $hr-ms1)
+
+    $chord-action
+  )
+
+  ($hr-k1 $hr-k2 $chord-key) (multi
+    (on-press press-vkey $hr-ms1) $hr-m1 (on-release release-vkey $hr-ms1)
+    (on-press press-vkey $hr-ms2) $hr-m2 (on-release release-vkey $hr-ms2)
+
+    $chord-action
+  )
+
+  ($hr-k1 $hr-k3 $chord-key) (multi
+    (on-press press-vkey $hr-ms1) $hr-m1 (on-release release-vkey $hr-ms1)
+    (on-press press-vkey $hr-ms3) $hr-m3 (on-release release-vkey $hr-ms3)
+
+    $chord-action
+  )
+
+  ;; k2
+  ($hr-k2 $chord-key) (multi
+    (on-press press-vkey $hr-ms2) $hr-m2 (on-release release-vkey $hr-ms2)
+
+    $chord-action
+  )
+
+  ($hr-k2 $hr-k3 $chord-key) (multi
+    (on-press press-vkey $hr-ms2) $hr-m2 (on-release release-vkey $hr-ms2)
+    (on-press press-vkey $hr-ms3) $hr-m3 (on-release release-vkey $hr-ms3)
+
+    $chord-action
+  )
+
+  ;; k3
+  ($hr-k3 $chord-key) (multi
+    (on-press press-vkey $hr-ms3) $hr-m3 (on-release release-vkey $hr-ms3)
+
+    $chord-action
+  )
+
+  ;; k1 k2 k3
+  ($hr-k1 $hr-k2 $hr-k3 $chord-key) (multi
+    (on-press press-vkey $hr-ms1) $hr-m1 (on-release release-vkey $hr-ms1)
+    (on-press press-vkey $hr-ms2) $hr-m2 (on-release release-vkey $hr-ms2)
+    (on-press press-vkey $hr-ms3) $hr-m3 (on-release release-vkey $hr-ms3)
+
+    $chord-action
+  )
+)

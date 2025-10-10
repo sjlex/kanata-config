@@ -1,0 +1,400 @@
+;; =============================================================================
+;; Layers
+;; =============================================================================
+
+;; qPhyx-cyr
+(deflayer (qphyx-cyr icon assets\icons\qphyx-cyr.png)
+  @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
+  •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
+  @qchhl @msю   @п     @х!    @ы!    @я!    #||#      @з!    @ш!    @д!    @л     @msв   @qchhщ @ъ     •
+  @caps  @е!    @а!    @о!    @и!    @у!    #||#      @м!    @с!    @т!    @р!    @н!    @ц            @ret
+  @lsft  @й!    @э!    @ё!    @к!    @ь     #||#      @г     @ф!    @ж!    @ч!    @б!                  @rsft
+  @lctl  @lmet  @qcatl @spc                 #||#                                                @qcatr @rctl
+)
+
+;; (deflayer qphyx-cyr-typing-layer
+;;   @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
+;;   •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
+;;   @lst   ю      п      х      ы      я      #||#      з      ш      д      л      в      щ      ъ      •
+;;   @caps  е      а      о      и      у      #||#      м      с      т      р      н      ц             @ret
+;;   @lsft  й      э      ё      к      ь      #||#      г      ф      ж      ч      б                    @rsft
+;;   @lctl  @lmet  @lalt  @spc                 #||#                                                @ralt  @rctl
+;; )
+
+(deflayer qphyx-cyr-hr-left
+  @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
+  •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
+  @qchhl @msю   @п     @х!    @ы!    @я!    #||#      @з     @ш     @д     @л     @в     @щ     @ъ     •
+  @caps  @е!    @а!    @о!    @и!    @у!    #||#      @м     @с     @т     @р     @н     @ц            @ret
+  @lsft  @й!    @э!    @ё!    @к!    @ь     #||#      @г     @ф     @ж     @ч     @б                   @rsft
+  @lctl  @lmet  @qcatl @spc-qcl             #||#                                                @qcatr @rctl
+)
+
+(deflayer qphyx-cyr-hr-right
+  @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
+  •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
+  @qchhl @ю     @п     @х     @ы     @я     #||#      @з!    @ш!    @д!    @л     @msв   @qchhщ @ъ     •
+  @caps  @е     @а     @о     @и     @у     #||#      @м!    @с!    @т!    @р!    @н!    @ц            @ret
+  @lsft  @й     @э     @ё     @к     @ь     #||#      @г     @ф!    @ж!    @ч!    @б!                  @rsft
+  @lctl  @lmet  @qcatl @spc-qcr             #||#                                                @qcatr @rctl
+)
+
+;; =============================================================================
+;; Definitions
+;; =============================================================================
+
+;; Home-row keys
+(defvar
+  qphyx-cyr-hl3k @а
+  qphyx-cyr-hl2k @о
+  qphyx-cyr-hl1k @и
+  ;; ---
+  qphyx-cyr-hr1k @с
+  qphyx-cyr-hr2k @т
+  qphyx-cyr-hr3k @р
+)
+
+;; Modifier assignments for home-row keys
+(defvar
+  qphyx-cyr-hl3m lalt
+  qphyx-cyr-hl2m lctl
+  qphyx-cyr-hl1m lsft
+  ;; ---
+  qphyx-cyr-hr1m lsft
+  qphyx-cyr-hr2m lctl
+  qphyx-cyr-hr3m lalt
+)
+
+;; Actual physical key positions for home-row
+(defvar
+  qphyx-cyr-hl3k-real s
+  qphyx-cyr-hl2k-real d
+  qphyx-cyr-hl1k-real f
+  ;; ---
+  qphyx-cyr-hr1k-real j
+  qphyx-cyr-hr2k-real k
+  qphyx-cyr-hr3k-real l
+)
+
+;; Home-row groups
+(defvar
+  qphyx-cyr-hrk-left (а о и)
+  qphyx-cyr-hrk-right (с т р)
+  qphyx-cyr-hrk-all (
+    а о и
+    с т р
+  )
+)
+
+;; Unicode-key mapping
+(defalias
+  (t! unicode-key ю Ю q)
+  (t! unicode-key п П p)
+  (t! unicode-key х Х h)
+  (t! unicode-key ы Ы y)
+  (t! unicode-key я Я x)
+
+  (t! unicode-key е Е e)
+  (t! unicode-key а А a)
+  (t! unicode-key о О o)
+  (t! unicode-key и И i)
+  (t! unicode-key у У u)
+
+  (t! unicode-key й Й j)
+  (t! unicode-key э Э nop0)
+  (t! unicode-key ё Ё nop0)
+  (t! unicode-key к К k)
+  (t! unicode-key ь Ь nop0)
+
+  ;; ---
+
+  (t! unicode-key з З z)
+  (t! unicode-key ш Ш w)
+  (t! unicode-key д Д d)
+  (t! unicode-key л Л l)
+  (t! unicode-key в В v)
+  (t! unicode-key щ Щ nop0)
+  (t! unicode-key ъ Ъ nop0)
+
+  (t! unicode-key м М m)
+  (t! unicode-key с С s)
+  (t! unicode-key т Т t)
+  (t! unicode-key р Р r)
+  (t! unicode-key н Н n)
+  (t! unicode-key ц Ц c)
+
+  (t! unicode-key г Г g)
+  (t! unicode-key ф Ф f)
+  (t! unicode-key ж Ж nop0)
+  (t! unicode-key ч Ч nop0)
+  (t! unicode-key б Б b)
+)
+
+;; =============================================================================
+;; qPhyx-cyr
+;; =============================================================================
+
+(defalias
+  qpc (layer-switch qphyx-cyr)
+
+  qc (layer-switch qphyx-cyr)
+  qch (layer-while-held qphyx-cyr)
+)
+
+;; Left Side
+(defalias
+  ;; Bypass unused chord bindings
+  spc-qcl (multi
+    (t! bypass-unused-bind qphyx-cyr-left-chord navigation)
+    (t! bypass-unused-bind qphyx-cyr-nav-alt-left-chord navigation)
+    (t! bypass-unused-bind qphyx-cyr-nav-left-chord navigation)
+  )
+
+  ;; Left hold key for sticky home-row modifiers
+  qchhl (t! home-row-hold-key (chord qphyx-cyr-left-chord hr-hold))
+
+  ;; Mouse
+  msю (multi
+    (t! mouse-key
+      (chord qphyx-cyr-left-chord mouse)
+      $qphyx-cyr-hr1k-real $qphyx-cyr-hr2k-real $qphyx-cyr-hr3k-real
+    )
+    (t! mouse-alt-key lalt)
+  )
+
+  ;; Left-Alt
+  qcatl (t! mouse-alt-key-mod lalt (chord qphyx-cyr-left-chord lalt-mod))
+
+  ;; Layer Activation Keys
+  е! (chord qphyx-cyr-nav-alt-left-chord wrf)    ;; Workflow layer
+  х! (chord qphyx-cyr-left-chord num)            ;; Numbers layer
+  ы! (chord qphyx-cyr-left-chord sym)            ;; Symbols layer
+  я! (chord qphyx-cyr-typography-left-chord typ) ;; Typography layer
+  у! (chord qphyx-cyr-functions-left-chord fun)  ;; Functions layer
+
+  ;; Editing keys
+  й! (chord qphyx-cyr-nav-left-chord save)  ;; Save
+  э! (chord qphyx-cyr-nav-left-chord cut)   ;; Cut
+  ё! (chord qphyx-cyr-nav-left-chord copy)  ;; Copy
+  к! (chord qphyx-cyr-nav-left-chord paste) ;; Paste
+
+  ;; Home-Row Keys
+  а! (chord qphyx-cyr-left-chord $qphyx-cyr-hl3k)
+  о! (chord qphyx-cyr-left-chord $qphyx-cyr-hl2k)
+  и! (chord qphyx-cyr-left-chord $qphyx-cyr-hl1k)
+)
+
+;; Right Side
+(defalias
+  ;; Home-Row Keys
+  с! (chord qphyx-cyr-right-chord $qphyx-cyr-hr1k)
+  т! (chord qphyx-cyr-right-chord $qphyx-cyr-hr2k)
+  р! (chord qphyx-cyr-right-chord $qphyx-cyr-hr3k)
+
+  ;; Editing keys
+  ф! (chord qphyx-cyr-nav-right-chord paste) ;; Paste
+  ж! (chord qphyx-cyr-nav-right-chord copy)  ;; Copy
+  ч! (chord qphyx-cyr-nav-right-chord cut)   ;; Cut
+  б! (chord qphyx-cyr-nav-right-chord save)  ;; Save
+
+  ;; Layer Activation Keys
+  н! (chord qphyx-cyr-nav-alt-right-chord wrf)    ;; Workflow layer
+  д! (chord qphyx-cyr-right-chord num)            ;; Numbers layer
+  ш! (chord qphyx-cyr-right-chord sym)            ;; Symbols layer
+  з! (chord qphyx-cyr-typography-right-chord typ) ;; Typography layer
+  м! (chord qphyx-cyr-functions-right-chord fun)  ;; Functions layer
+
+  ;; Right hold key for sticky home-row modifiers
+  qchhщ (t! home-row-hold-key (chord qphyx-cyr-right-chord hr-hold))
+
+  ;; Mouse
+  msв (multi
+    (t! mouse-key
+      (chord qphyx-cyr-right-chord mouse)
+      $qphyx-cyr-hl1k-real $qphyx-cyr-hl2k-real $qphyx-cyr-hl3k-real
+    )
+    (t! mouse-alt-key lalt)
+  )
+
+  ;; Right-Alt
+  qcatr (t! mouse-alt-key-mod ralt (chord qphyx-cyr-right-chord ralt-mod))
+
+  ;; Bypass unused chord bindings
+  spc-qcr (multi
+    (t! bypass-unused-bind qphyx-cyr-right-chord navigation)
+    (t! bypass-unused-bind qphyx-cyr-nav-alt-right-chord navigation)
+    (t! bypass-unused-bind qphyx-cyr-nav-right-chord navigation)
+  )
+)
+
+;; =============================================================================
+;; Configures key behavior for optimal one-handed and alternating-hand usage:
+;; =============================================================================
+;; - If a key is tapped and held solely on one half of the keyboard, it acts
+;;   as a `tap-hold-press` for quick layer switching (using `layer-while-held`).
+;;   The key press on the new layer is also immediately triggered.
+;;
+;; - If a key combination or alternating presses between the left and right halves
+;;   occur, it uses `tap-hold-release` to prevent accidental layer activation.
+;;   This ensures that only a deliberate release after a hold will trigger
+;;   the layer change, avoiding false positives in more complex typing scenarios.
+;; -----------------------------------------------------------------------------
+
+;; Left Side
+;; Navigation hotkeys
+(defchords qphyx-cyr-nav-left-chord $chord-time
+  (save) @й
+  (cut) @э
+  (copy) @ё
+  (paste) @к
+
+  (save navigation) @save
+  (cut navigation) @cut
+  (copy navigation) @copy
+  (paste navigation) @paste
+
+  (copy paste navigation) @cut
+)
+
+;; Navigation Alternative
+(defchords qphyx-cyr-nav-alt-left-chord $chord-time
+  (wrf) (tap-hold-release $tap-time $hold-time @е (layer-while-held workflow))
+  (navigation wrf) (layer-while-held navigation-alt)
+)
+
+;; Typography
+(defchords qphyx-cyr-typography-left-chord $chord-time
+  (typ) (tap-hold-release $tap-time $hold-time @я (layer-while-held typography))
+)
+
+;; Functions
+(defchords qphyx-cyr-functions-left-chord $chord-time
+  (fun) (tap-hold-release $tap-time $hold-time @у (layer-while-held functions))
+)
+
+;; Left Chords
+(defchords qphyx-cyr-left-chord $chord-time
+  ;; Numbers
+  (num) (tap-hold-release $tap-time $hold-time @х (layer-while-held numbers))
+  (num $qphyx-cyr-hl1k) (layer-while-held quick-math)
+
+  ;; Symbols
+  (sym) (tap-hold-release $tap-time $hold-time @ы (layer-while-held symbols))
+  (sym num) (layer-while-held symbols-math)
+
+  ;; Tab
+  (t! home-row-hold-tab-fast-chord
+    hr-hold
+    $qphyx-cyr-hl1k $qphyx-cyr-hl2k $qphyx-cyr-hl3k
+    $qphyx-cyr-hl1m $qphyx-cyr-hl2m $qphyx-cyr-hl3m
+    vrt-hl1s vrt-hl2s vrt-hl3s
+  )
+
+  ;; Mouse Alternative
+  (t! mouse-alt-chord mouse lalt-mod)
+
+  ;; Mouse
+  (t! mouse-chord
+    mouse
+    @ю
+    $qphyx-cyr-hl1k $qphyx-cyr-hl2k $qphyx-cyr-hl3k
+    $qphyx-cyr-hl1m $qphyx-cyr-hl2m $qphyx-cyr-hl3m
+    vrt-hl1s vrt-hl2s vrt-hl3s
+  )
+
+  ;; Home-Row
+  (t! home-row-side-chord
+    $qphyx-cyr-hl1k $qphyx-cyr-hl2k $qphyx-cyr-hl3k
+    $qphyx-cyr-hl1m $qphyx-cyr-hl2m $qphyx-cyr-hl3m
+    vrt-hl1v vrt-hl2v vrt-hl3v
+  )
+
+  ;; Navigation
+  (t! navigation-chord
+    navigation
+    spc
+    $qphyx-cyr-hl1k $qphyx-cyr-hl2k $qphyx-cyr-hl3k
+    $qphyx-cyr-hl1m $qphyx-cyr-hl2m $qphyx-cyr-hl3m
+    vrt-hl1s vrt-hl2s vrt-hl3s
+  )
+)
+
+;; Right Side
+;; Navigation hotkeys
+(defchords qphyx-cyr-nav-right-chord $chord-time
+  (save) @б
+  (cut) @ч
+  (copy) @ж
+  (paste) @ф
+
+  (save navigation) @save
+  (cut navigation) @cut
+  (copy navigation) @copy
+  (paste navigation) @paste
+
+  (copy paste navigation) @cut
+)
+
+;; Navigation Alternative
+(defchords qphyx-cyr-nav-alt-right-chord $chord-time
+  (wrf) (tap-hold-release $tap-time $hold-time @н (layer-while-held workflow))
+  (navigation wrf) (layer-while-held navigation-alt)
+)
+
+;; Typography
+(defchords qphyx-cyr-typography-right-chord $chord-time
+  (typ) (tap-hold-release $tap-time $hold-time @з (layer-while-held typography))
+)
+
+;; Functions
+(defchords qphyx-cyr-functions-right-chord $chord-time
+  (fun) (tap-hold-release $tap-time $hold-time @м (layer-while-held functions))
+)
+
+;; Right Chords
+(defchords qphyx-cyr-right-chord $chord-time
+  ;; Numbers
+  (num) (tap-hold-release $tap-time $hold-time @д (layer-while-held numbers))
+  (num $qphyx-cyr-hr1k) (layer-while-held quick-math)
+
+  ;; Symbols
+  (sym) (tap-hold-release $tap-time $hold-time @ш (layer-while-held symbols))
+  (sym num) (layer-while-held symbols-math)
+
+  ;; Tab
+  (t! home-row-hold-chord
+    hr-hold
+    (tap-dance $tap-dance-time (@щ @window-switch-fast))
+    $qphyx-cyr-hr1k $qphyx-cyr-hr2k $qphyx-cyr-hr3k
+    $qphyx-cyr-hr1m $qphyx-cyr-hr2m $qphyx-cyr-hr3m
+    vrt-hr1s vrt-hr2s vrt-hr3s
+  )
+
+  ;; Mouse Alternative
+  (t! mouse-alt-chord mouse ralt-mod)
+
+  ;; Mouse
+  (t! mouse-chord
+    mouse
+    @в
+    $qphyx-cyr-hr1k $qphyx-cyr-hr2k $qphyx-cyr-hr3k
+    $qphyx-cyr-hr1m $qphyx-cyr-hr2m $qphyx-cyr-hr3m
+    vrt-hr1s vrt-hr2s vrt-hr3s
+  )
+
+  ;; Home-Row
+  (t! home-row-side-chord
+    $qphyx-cyr-hr1k $qphyx-cyr-hr2k $qphyx-cyr-hr3k
+    $qphyx-cyr-hr1m $qphyx-cyr-hr2m $qphyx-cyr-hr3m
+    vrt-hr1v vrt-hr2v vrt-hr3v
+  )
+
+  ;; Navigation
+  (t! navigation-chord
+    navigation
+    spc
+    $qphyx-cyr-hr1k $qphyx-cyr-hr2k $qphyx-cyr-hr3k
+    $qphyx-cyr-hr1m $qphyx-cyr-hr2m $qphyx-cyr-hr3m
+    vrt-hr1s vrt-hr2s vrt-hr3s
+  )
+)

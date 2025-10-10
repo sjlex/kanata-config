@@ -1,0 +1,63 @@
+;; =============================================================================
+;; Home-row Hold
+;; =============================================================================
+
+;; Home-row Hold Chord
+(deftemplate home-row-hold-chord (
+  hr-hold-chord-key ;; Chord key
+  hr-hold-key-action ;; Key action
+
+  hr-k1 hr-k2 hr-k3 ;; HR-Keys
+  hr-m1 hr-m2 hr-m3 ;; HR-Mods
+  hr-ms1 hr-ms2 hr-ms3 ;; HR-Mods-State
+)
+  (t! home-row-sticky-chord
+    ;; Chord key
+    $hr-hold-chord-key
+
+    ;; Key action
+    $hr-hold-key-action
+
+    ;; Chord action
+    nop0
+
+    $hr-k1 $hr-k2 $hr-k3 ;; HR-Keys
+    $hr-m1 $hr-m2 $hr-m3 ;; HR-Mods
+    $hr-ms1 $hr-ms2 $hr-ms3 ;; HR-Mods-State
+  )
+)
+
+;; Home-row Hold Chord (w/fast Alt + Tab)
+(deftemplate home-row-hold-tab-fast-chord (
+  hr-hold-chord-key ;; Chord key
+
+  hr-k1 hr-k2 hr-k3 ;; HR-Keys
+  hr-m1 hr-m2 hr-m3 ;; HR-Mods
+  hr-ms1 hr-ms2 hr-ms3 ;; HR-Mods-State
+)
+  (t! home-row-hold-chord
+    ;; Chord key
+    $hr-hold-chord-key
+
+    ;; Key action (Alt + Tab)
+    (tap-hold-release $tap-time $hold-time @window-switch-fast nop0)
+
+    $hr-k1 $hr-k2 $hr-k3 ;; HR-Keys
+    $hr-m1 $hr-m2 $hr-m3 ;; HR-Mods
+    $hr-ms1 $hr-ms2 $hr-ms3 ;; HR-Mods-State
+  )
+)
+
+;; Home-row Hold Key Template
+(deftemplate home-row-hold-key (
+  home-row-hold-key-action ;; Key action
+)
+  (tap-hold-release $tap-time $hold-time
+    $home-row-hold-key-action
+    (multi
+      (t! hr-stick)
+      (t! hr-unstick)
+    )
+  )
+)
+

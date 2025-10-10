@@ -1,0 +1,43 @@
+;; =============================================================================
+;; Navigation Feature
+;; =============================================================================
+
+;; Navigation Chord
+(deftemplate navigation-chord (
+  nav-chord-key ;; Chord key
+  nav-key-action ;; Key action
+
+  hr-k1 hr-k2 hr-k3 ;; HR-Keys
+  hr-m1 hr-m2 hr-m3 ;; HR-Mods
+  hr-ms1 hr-ms2 hr-ms3 ;; HR-Mods-State
+)
+  (t! home-row-sticky-chord
+    ;; Chord key
+    $nav-chord-key
+
+    ;; Key action
+    $nav-key-action
+
+    ;; Chord action
+    (layer-while-held navigation)
+
+    $hr-k1 $hr-k2 $hr-k3 ;; HR-Keys
+    $hr-m1 $hr-m2 $hr-m3 ;; HR-Mods
+    $hr-ms1 $hr-ms2 $hr-ms3 ;; HR-Mods-State
+  )
+)
+
+;; Navigation Key Template
+(deftemplate navigation-key (
+  nav-key-action ;; Key action
+)
+  (tap-hold-press $tap-time $hold-time
+    $nav-key-action
+    (multi
+        (layer-while-held navigation)
+
+        (t! hr-stick) ;; Enable sticky modifiers
+        (t! hr-unstick) ;; Disable sticky modifiers on release
+      )
+  )
+)

@@ -1,0 +1,69 @@
+;; =============================================================================
+;; Kanata Entry Point
+;; =============================================================================
+
+;; Global settings
+(include config.kbd)
+
+;; Physical Layout
+(include layouts\source.kbd)
+
+;; Local key definitions for international layouts
+(include layouts\localkeys.kbd)
+
+;; Utility functions and templates
+(include utils.kbd)
+
+;; Shared definitions and templates
+(include shared.kbd)
+
+;; Base definitions and functionality
+(include base.kbd)
+
+;; =============================================================================
+;; Language and Layout Support
+;; =============================================================================
+
+;; Primary layouts (ORDER CRITICAL - base layer must load first)
+(include layouts\qPhyx\qphyx-lat.kbd)  ;; Primary Latin layout
+(include layouts\qPhyx\qphyx-cyr.kbd)  ;; Cyrillic layout
+(include layouts\Qwerty\qwerty.kbd)    ;; QWERTY layout
+
+;; =============================================================================
+;; Features
+;; =============================================================================
+
+;; Language switching
+(include features\lang-switch.kbd)
+
+;; Home-row
+(include features\home-row.kbd)
+(include features\home-row-sticky.kbd)
+(include features\home-row-hold.kbd)
+
+;; Mouse
+(include features\mouse.kbd)
+(include features\mouse-alt.kbd)
+
+;; Navigation
+(include features\navigation.kbd)
+
+;; =============================================================================
+;; Layers
+;; =============================================================================
+
+;; Central hub for layer switching
+(include layers\hub.kbd)
+
+;; Layers
+(include layers\navigation.kbd)
+(include layers\mouse.kbd)
+(include layers\numbers.kbd)
+(include layers\symbols.kbd)
+(include layers\typography.kbd)
+(include layers\functions.kbd)
+
+;; Specialized layers
+(include layers\game.kbd)
+(include layers\workflow.kbd)
+(include layers\workflow-painting.kbd)

@@ -1,0 +1,53 @@
+;; =============================================================================
+;; Layers
+;; =============================================================================
+
+;; Symbols
+(deflayer (symbols icon assets\icons\symbols.png)
+  @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
+  •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
+  @smh   @sm`h  •      •      @sm@   @sm\   #||#      @sm#   @sm{   @sm}   @smdq  @sm'h  @smh   •      •
+  @caps  •      •      @sm?   @sm!   @sm$   #||#      @sm:   @smrbo @smrbc @smsc  •      •             @ret
+  @lsft  •      •      •      •      @sm~   #||#      @sm_   @sm[   @sm]   •      •                    @rsft
+  @lctl  @lmet  @lalt  @spc                 #||#                                                @ralt  @rctl
+)
+
+;; =============================================================================
+;; Symbols
+;; =============================================================================
+
+(defalias
+  sym (layer-switch symbols)
+
+  sm (layer-switch symbols)
+  smh (layer-while-held symbols)
+)
+
+;; Symbols
+(defalias
+  sm` `
+  sm' '
+
+  sm@ S-2
+  sm? S-/
+  sm! S-1
+  sm\ \
+  smdq S-' ;; "
+  smsc ;
+  sm# S-3
+  sm$ S-4
+  sm: S-;
+  sm~ S-`
+  sm_ S--
+  sm[ [
+  sm] ]
+  sm{ S-[
+  sm} S-]
+  smrbo S-9 ;; (
+  smrbc S-0 ;; )
+)
+
+(defalias
+  sm`h (tap-hold-press $tap-time $hold-time @sm` (layer-while-held mouse))
+  sm'h (tap-hold-press $tap-time $hold-time @sm' (layer-while-held mouse))
+)
