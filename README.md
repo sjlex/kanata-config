@@ -33,6 +33,8 @@
 
 My personal kanata configuration with home-row.
 
+My personal kanata configuration for non-qmk / non-zmk keyboard.
+
 ![](design/out/base.png)
 
 ![](design/out/qphyx-typing.png)
