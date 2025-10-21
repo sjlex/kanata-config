@@ -38,29 +38,23 @@ My personal kanata configuration for non-qmk / non-zmk keyboard.
 ![](design/out/base.png)
 
 ![](design/out/qphyx-typing.png)
-<!-- ![](design/out/qphyx-lat.png) -->
-<!-- ![](design/out/qphyx-cyr.png) -->
 
-![](design/out/hub.png)
+![](design/out/layouts.png)
 
 ![](design/out/navigation.png)
-<!-- ![](design/out/navigation-alt.png) -->
+![](design/out/navigation-alt.png)
 
 ![](design/out/mouse.png)
-<!-- ![](design/out/mouse-alt.png) -->
+![](design/out/mouse-alt.png)
 
 ![](design/out/numbers.png)
 ![](design/out/quick-math.png)
-<!-- ![](design/out/symbols-math.png) -->
 
 ![](design/out/symbols.png)
-<!-- ![](design/out/typography.png) -->
 
 ![](design/out/functions.png)
 
 ![](design/out/workflow.png)
-
-![](design/out/game.png)
 
 ## Features
 
