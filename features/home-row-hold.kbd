@@ -52,7 +52,7 @@
 (deftemplate home-row-hold-key (
   home-row-hold-key-action ;; Key action
 )
-  (tap-hold-release $tap-time $hold-time
+  (tap-hold-press $tap-time $hold-time
     $home-row-hold-key-action
     (multi
       (t! hr-stick)
@@ -60,4 +60,3 @@
     )
   )
 )
-
