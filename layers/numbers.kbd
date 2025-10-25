@@ -7,7 +7,7 @@
   @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
   •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
   @nbh   @nbml  @nb7   @nb8   @nb9h  @nb,   #||#      @nb,   @nbn7h @nbn8  @nbn9  @nbmr  @nbh   •      •
-  @caps  •      @nb4   @nb5   @nb6h  @nb.   #||#      @nb.   @nbn4h @nbn5  @nbn6  •      •             @ret
+  @caps  @nb0   @nb4   @nb5   @nb6h  @nb.   #||#      @nb.   @nbn4h @nbn5  @nbn6  @nbn0  •             @ret
   @lsft  •      @nb1   @nb2   @nb3   @nb0   #||#      @nbn0  @nbn1  @nbn2  @nbn3  •                    @rsft
   @lctl  @lmet  @lalt  @spc                 #||#                                                @ralt  @rctl
 )
