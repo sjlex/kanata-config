@@ -36,6 +36,9 @@
   (multi
     $mouse-alt-key
     $mouse-alt-key-action
+
+    (layer-while-held qwerty)
+
     (on-release release-vkey vrt-msa)
   )
 )

@@ -31,17 +31,17 @@
   esc esc
   bspc bspc
 
-  lctl lctl
-  rctl rctl
+  lctl (multi lctl (layer-while-held qwerty))
+  rctl (multi rctl (layer-while-held qwerty))
 
-  lalt lalt
-  ralt ralt
+  lalt (multi lalt (layer-while-held qwerty))
+  ralt (multi ralt (layer-while-held qwerty))
 
-  lsft lsft
-  rsft rsft
+  lsft (multi lsft (layer-while-held qwerty))
+  rsft (multi rsft (layer-while-held qwerty))
 
-  lmet lmet
-  rmet rmet
+  lmet (multi lmet (layer-while-held qwerty))
+  rmet (multi rmet (layer-while-held qwerty))
 )
 
 ;; Hold for Hub, tap for reset modifier keys and switch to the base layer
