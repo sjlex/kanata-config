@@ -7,6 +7,8 @@
   mouse-chord-key ;; Chord key
   mouse-alt-chord-alt-key ;; Chord alt key
 )
+  ($mouse-alt-chord-alt-key) (layer-while-held qwerty)
+
   ($mouse-alt-chord-alt-key $mouse-chord-key) (multi
     (on-press press-vkey vrt-msa)
     (layer-while-held mouse)
@@ -36,8 +38,6 @@
   (multi
     $mouse-alt-key
     $mouse-alt-key-action
-
-    (layer-while-held qwerty)
 
     (on-release release-vkey vrt-msa)
   )
