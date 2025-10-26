@@ -19,7 +19,11 @@
     $mouse-key-action
 
     ;; Chord action
-    (layer-while-held mouse)
+    (multi
+      (on-press press-vkey vrt-mouse)
+      (layer-while-held mouse)
+      (on-release release-vkey vrt-mouse)
+    )
 
     $hr-k1 $hr-k2 $hr-k3 ;; HR-Keys
     $hr-m1 $hr-m2 $hr-m3 ;; HR-Mods

@@ -12,6 +12,25 @@
   (spc grv) lrld $chord-time all-released ()
 )
 
+;; Layers: Key States
+(defvirtualkeys
+  vrt-num nop0
+  vrt-quick-math nop0
+
+  vrt-sym nop0
+  vrt-sym-math nop0
+
+  vrt-typ nop0
+
+  vrt-fun nop0
+  vrt-wrf nop0
+
+  vrt-nav nop0
+  vrt-nav-alt nop0
+
+  vrt-mouse nop0
+)
+
 ;; Virtual nop0-9
 (defvirtualkeys
   vrt-nop0 nop0

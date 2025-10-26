@@ -19,7 +19,11 @@
     $nav-key-action
 
     ;; Chord action
-    (layer-while-held navigation)
+    (multi
+      (on-press press-vkey vrt-nav)
+      (layer-while-held navigation)
+      (on-release release-vkey vrt-nav)
+    )
 
     $hr-k1 $hr-k2 $hr-k3 ;; HR-Keys
     $hr-m1 $hr-m2 $hr-m3 ;; HR-Mods
