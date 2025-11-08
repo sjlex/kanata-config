@@ -50,17 +50,54 @@
   esc esc
   bspc bspc
 
-  lctl (multi lctl (layer-while-held qwerty))
-  rctl (multi rctl (layer-while-held qwerty))
+  lalt lalt
+  ralt ralt
 
-  lalt (multi lalt (layer-while-held qwerty))
-  ralt (multi ralt (layer-while-held qwerty))
+  lctl (multi
+    lctl
+    (switch
+      ((layer qphyx-lat)) (layer-while-held qwerty) break
+      ((layer qphyx-cyr)) (layer-while-held qwerty) break
+    )
+  )
 
-  lsft (multi lsft (layer-while-held qwerty))
-  rsft (multi rsft (layer-while-held qwerty))
+  rctl (multi
+    rctl
+    (switch
+      ((layer qphyx-lat)) (layer-while-held qwerty) break
+      ((layer qphyx-cyr)) (layer-while-held qwerty) break
+    )
+  )
 
-  lmet (multi lmet (layer-while-held qwerty))
-  rmet (multi rmet (layer-while-held qwerty))
+  lsft (multi
+    lsft
+    (switch
+      ((layer qphyx-lat)) (layer-while-held qwerty) break
+    )
+  )
+
+  rsft (multi
+    rsft
+    (switch
+      ((layer qphyx-lat)) (layer-while-held qwerty) break
+    )
+  )
+
+  lmet (multi
+    lmet
+    (switch
+      ((layer qphyx-lat)) (layer-while-held qwerty) break
+      ((layer qphyx-cyr)) (layer-while-held qwerty) break
+    )
+  )
+
+  rmet (multi
+    rmet
+    (switch
+      ((layer qphyx-lat)) (layer-while-held qwerty) break
+      ((layer qphyx-cyr)) (layer-while-held qwerty) break
+    )
+  )
 )
 
 ;; Hold for Hub, tap for reset modifier keys and switch to the base layer

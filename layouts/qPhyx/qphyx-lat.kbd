@@ -317,7 +317,7 @@
   )
 
   ;; Mouse Alternative
-  (t! mouse-alt-chord mouse lalt-mod)
+  (t! mouse-alt-chord mouse lalt-mod hr-hold)
   (mouse lalt-mod hr-hold) (layer-while-held mouse-alt)
 
   ;; Home-Row
@@ -445,7 +445,7 @@
   )
 
   ;; Mouse Alternative
-  (t! mouse-alt-chord mouse ralt-mod)
+  (t! mouse-alt-chord mouse ralt-mod hr-hold)
   (mouse ralt-mod hr-hold) (layer-while-held mouse-alt)
 
   ;; Home-Row
