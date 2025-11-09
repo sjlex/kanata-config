@@ -4,8 +4,8 @@
 
 ;; qPhyx-cyr
 (deflayer (qphyx-cyr icon assets\icons\qphyx-cyr.png)
-  @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
-  •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
+  @esc   _      _      _      _      _      #||#      _      _      _      _      _      _      _      _
+  •      _      _      _      _      _      #||#      _      _      _      _      _      _      _      @bspc
   @qchhl @msю   @п     @х!    @ы!    @я!    #||#      @з!    @ш!    @д!    @л     @msв   @qchhщ @ъ     •
   @caps  @е!    @а!    @о!    @и!    @у!    #||#      @м!    @с!    @т!    @р!    @н!    @ц            @ret
   @lsft  @й!    @э!    @ё!    @к!    @ь     #||#      @г     @ф!    @ж!    @ч!    @б!                  @rsft

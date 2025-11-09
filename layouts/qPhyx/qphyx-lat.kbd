@@ -4,8 +4,8 @@
 
 ;; qPhyx-lat
 (deflayer (qphyx-lat icon assets\icons\qphyx-lat.png)
-  @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
-  •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
+  @esc   _      _      _      _      _      #||#      _      _      _      _      _      _      _      _
+  •      _      _      _      _      _      #||#      _      _      _      _      _      _      _      @bspc
   @qlhhl @msq   p      @h!    @y!    @x!    #||#      @z!    @w!    @d!    l      @msv   @qlhhr •      •
   @caps  @e!    @a!    @o!    @i!    @u!    #||#      @m!    @s!    @t!    @r!    @n!    c             @ret
   @lsft  @j!    @nlcut @nlcpy @k!    •      #||#      g      @f!    @nrcpy @nrcut @b!                  @rsft
