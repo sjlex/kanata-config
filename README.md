@@ -1,6 +1,6 @@
 <h3 id="kanata-config" align="center">
   <br>
-    <img src="assets/icons/base.png" alt="logo" width="150">
+    <img src="assets/logo.png" alt="logo" width="120">
   <br>
   Kanata Config
   <br>
@@ -12,7 +12,12 @@
   <p>My personal kanata configuration.</p>
 </div>
 
-![Screenshot](design/screenshot.png)
+<p align="center">
+  <a href="https://github.com/sjlex/vscode-theme-darcula-void/releases/latest"><img alt="Version" src="https://img.shields.io/github/v/release/sjlex/vscode-theme-darcula-void?labelColor=black&color=black"></a>&nbsp;
+  <a href="https://github.com/sjlex/kanata-config/blob/main/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/sjlex/kanata-config?labelColor=black&color=black"></a>&nbsp;
+</p>
+
+![Screenshot](assets/layers/base.png)
 
 ## Table of contents
 
@@ -35,26 +40,28 @@ My personal kanata configuration with home-row.
 
 My personal kanata configuration for non-qmk / non-zmk keyboard.
 
-![](design/out/base.png)
+Common Keyboard Layouts
+Specialized Keyboard Layouts
 
-![](design/out/qphyx-typing.png)
 
-![](design/out/layouts.png)
+![](assets/layers/qphyx-typing.png)
 
-![](design/out/navigation.png)
-![](design/out/navigation-alt.png)
+![](assets/layers/layouts.png)
 
-![](design/out/mouse.png)
-![](design/out/mouse-alt.png)
+![](assets/layers/navigation.png)
+![](assets/layers/navigation-alt.png)
 
-![](design/out/numbers.png)
-![](design/out/quick-math.png)
+![](assets/layers/mouse.png)
+![](assets/layers/mouse-alt.png)
 
-![](design/out/symbols.png)
+![](assets/layers/numbers.png)
+![](assets/layers/quick-math.png)
 
-![](design/out/functions.png)
+![](assets/layers/symbols.png)
 
-![](design/out/workflow.png)
+![](assets/layers/functions.png)
+
+![](assets/layers/workflow.png)
 
 ## Features
 
