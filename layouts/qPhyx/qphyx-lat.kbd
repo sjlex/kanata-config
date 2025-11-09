@@ -4,8 +4,8 @@
 
 ;; qPhyx-lat
 (deflayer (qphyx-lat icon assets\icons\qphyx-lat.png)
-  @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
-  •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
+  @esc   _      _      _      _      _      #||#      _      _      _      _      _      _      _      _
+  •      _      _      _      _      _      #||#      _      _      _      _      _      _      _      @bspc
   @qlhhl @msq   p      @h!    @y!    @x!    #||#      @z!    @w!    @d!    l      @msv   @qlhhr •      •
   @caps  @e!    @a!    @o!    @i!    @u!    #||#      @m!    @s!    @t!    @r!    @n!    c             @ret
   @lsft  @j!    @nlcut @nlcpy @k!    •      #||#      g      @f!    @nrcpy @nrcut @b!                  @rsft
@@ -106,8 +106,15 @@
     (t! bypass-unused-bind qphyx-lat-nav-left-chord navigation)
   )
 
-  ;; Left hold key for sticky home-row modifiers
-  qlhhl (t! home-row-hold-key (chord qphyx-lat-left-chord hr-hold))
+  ;; Left hold-key for sticky home-row modifiers and layers
+  qlhhl (multi
+    (t! home-row-hold-key (chord qphyx-lat-left-chord hr-hold))
+
+    ;; Bypass unused chord bindings
+    (t! bypass-unused-bind qphyx-lat-typography-left-chord hr-hold)
+    (t! bypass-unused-bind qphyx-lat-nav-alt-left-chord hr-hold)
+    (t! bypass-unused-bind qphyx-lat-functions-left-chord hr-hold)
+  )
 
   ;; Mouse
   msq (multi
@@ -160,8 +167,15 @@
   z! (chord qphyx-lat-typography-right-chord typ)  ;; Typography layer
   m! (chord qphyx-lat-functions-right-chord fun)   ;; Functions layer
 
-  ;; Right hold key for sticky home-row modifiers
-  qlhhr (t! home-row-hold-key (chord qphyx-lat-right-chord hr-hold))
+  ;; Right hold-key for sticky home-row modifiers and layers
+  qlhhr (multi
+    (t! home-row-hold-key (chord qphyx-lat-right-chord hr-hold))
+
+    ;; Bypass unused chord bindings
+    (t! bypass-unused-bind qphyx-lat-typography-right-chord hr-hold)
+    (t! bypass-unused-bind qphyx-lat-nav-alt-right-chord hr-hold)
+    (t! bypass-unused-bind qphyx-lat-functions-right-chord hr-hold)
+  )
 
   ;; Mouse
   msv (multi
@@ -212,42 +226,86 @@
   (copy paste navigation) @cut
 )
 
-;; Navigation Alternative
+;; Navigation Alternative + Workflow
 (defchords qphyx-lat-nav-alt-left-chord $chord-time
-  (wrf) (tap-hold-release $tap-time $hold-time e (layer-while-held workflow))
-  (navigation wrf) (layer-while-held navigation-alt)
+  ;; Workflow
+  (wrf) (multi
+    (on-press press-vkey vrt-wrf)
+    (tap-hold-release $tap-time $hold-time e (layer-while-held workflow))
+    (on-release release-vkey vrt-wrf)
+  )
+  (wrf hr-hold) (layer-while-held workflow)
+
+  ;; Navigation Alternative
+  (navigation wrf) (multi
+    (on-press press-vkey vrt-nav-alt)
+    (layer-while-held navigation-alt)
+    (on-release release-vkey vrt-nav-alt)
+  )
+  (navigation wrf hr-hold) (layer-while-held navigation-alt)
 )
 
 ;; Typography
 (defchords qphyx-lat-typography-left-chord $chord-time
-  (typ) (tap-hold-release $tap-time $hold-time x (layer-while-held typography))
+  (typ) (multi
+    (on-press press-vkey vrt-typ)
+    (tap-hold-release $tap-time $hold-time x (layer-while-held typography))
+    (on-release release-vkey vrt-typ)
+  )
+  (typ hr-hold) (layer-while-held typography)
 )
 
 ;; Functions
 (defchords qphyx-lat-functions-left-chord $chord-time
-  (fun) (tap-hold-release $tap-time $hold-time u (layer-while-held functions))
+  (fun) (multi
+    (on-press press-vkey vrt-fun)
+    (tap-hold-release $tap-time $hold-time u (layer-while-held functions))
+    (on-release release-vkey vrt-fun)
+  )
+  (fun hr-hold) (layer-while-held functions)
 )
 
 ;; Left Chords
 (defchords qphyx-lat-left-chord $chord-time
   ;; Numbers
-  (num) (tap-hold-release $tap-time $hold-time h (layer-while-held numbers))
-  (num $qphyx-lat-hl1k) (layer-while-held quick-math)
+  (num) (multi
+    (on-press press-vkey vrt-num)
+    (tap-hold-release $tap-time $hold-time h (layer-while-held numbers))
+    (on-release release-vkey vrt-num)
+  )
+  (num hr-hold) (layer-while-held numbers)
+
+  ;; Quick-Math
+  (num $qphyx-lat-hl1k) (multi
+    (on-press press-vkey vrt-quick-math)
+    (layer-while-held quick-math)
+    (on-release release-vkey vrt-quick-math)
+  )
+  (num $qphyx-lat-hl1k hr-hold) (layer-while-held quick-math)
 
   ;; Symbols
-  (sym) (tap-hold-release $tap-time $hold-time y (layer-while-held symbols))
-  (sym num) (layer-while-held symbols-math)
+  (sym) (multi
+    (on-press press-vkey vrt-sym)
+    (tap-hold-release $tap-time $hold-time y (layer-while-held symbols))
+    (on-release release-vkey vrt-sym)
+  )
+  (sym hr-hold) (layer-while-held symbols)
 
-  ;; Tab
+  ;; Symbols: Math
+  (sym num) (multi
+    (on-press press-vkey vrt-sym-math)
+    (layer-while-held symbols-math)
+    (on-release release-vkey vrt-sym-math)
+  )
+  (sym num hr-hold) (layer-while-held symbols-math)
+
+  ;; HR-Hold
   (t! home-row-hold-tab-fast-chord
     hr-hold
     $qphyx-lat-hl1k $qphyx-lat-hl2k $qphyx-lat-hl3k
     $qphyx-lat-hl1m $qphyx-lat-hl2m $qphyx-lat-hl3m
     vrt-hl1s vrt-hl2s vrt-hl3s
   )
-
-  ;; Mouse Alternative
-  (t! mouse-alt-chord mouse lalt-mod)
 
   ;; Mouse
   (t! mouse-chord
@@ -257,6 +315,10 @@
     $qphyx-lat-hl1m $qphyx-lat-hl2m $qphyx-lat-hl3m
     vrt-hl1s vrt-hl2s vrt-hl3s
   )
+
+  ;; Mouse Alternative
+  (t! mouse-alt-chord mouse lalt-mod hr-hold)
+  (mouse lalt-mod hr-hold) (layer-while-held mouse-alt)
 
   ;; Home-Row
   (t! home-row-side-chord
@@ -273,6 +335,7 @@
     $qphyx-lat-hl1m $qphyx-lat-hl2m $qphyx-lat-hl3m
     vrt-hl1s vrt-hl2s vrt-hl3s
   )
+  (navigation hr-hold) (layer-while-held navigation)
 )
 
 ;; Right Side
@@ -291,42 +354,86 @@
   (copy paste navigation) @cut
 )
 
-;; Navigation Alternative
+;; Navigation Alternative + Workflow
 (defchords qphyx-lat-nav-alt-right-chord $chord-time
-  (wrf) (tap-hold-release $tap-time $hold-time n (layer-while-held workflow))
-  (navigation wrf) (layer-while-held navigation-alt)
+  ;; Workflow
+  (wrf) (multi
+    (on-press press-vkey vrt-wrf)
+    (tap-hold-release $tap-time $hold-time n (layer-while-held workflow))
+    (on-release release-vkey vrt-wrf)
+  )
+  (wrf hr-hold) (layer-while-held workflow)
+
+  ;; Navigation Alternative
+  (navigation wrf) (multi
+    (on-press press-vkey vrt-nav-alt)
+    (layer-while-held navigation-alt)
+    (on-release release-vkey vrt-nav-alt)
+  )
+  (navigation wrf hr-hold) (layer-while-held navigation-alt)
 )
 
 ;; Typography
 (defchords qphyx-lat-typography-right-chord $chord-time
-  (typ) (tap-hold-release $tap-time $hold-time z (layer-while-held typography))
+  (typ) (multi
+    (on-press press-vkey vrt-typ)
+    (tap-hold-release $tap-time $hold-time z (layer-while-held typography))
+    (on-release release-vkey vrt-typ)
+  )
+  (typ hr-hold) (layer-while-held typography)
 )
 
 ;; Functions
 (defchords qphyx-lat-functions-right-chord $chord-time
-  (fun) (tap-hold-release $tap-time $hold-time m (layer-while-held functions))
+  (fun) (multi
+    (on-press press-vkey vrt-fun)
+    (tap-hold-release $tap-time $hold-time m (layer-while-held functions))
+    (on-release release-vkey vrt-fun)
+  )
+  (fun hr-hold) (layer-while-held functions)
 )
 
 ;; Right Chords
 (defchords qphyx-lat-right-chord $chord-time
   ;; Numbers
-  (num) (tap-hold-release $tap-time $hold-time d (layer-while-held numbers))
-  (num $qphyx-lat-hr1k) (layer-while-held quick-math)
+  (num) (multi
+    (on-press press-vkey vrt-num)
+    (tap-hold-release $tap-time $hold-time d (layer-while-held numbers))
+    (on-release release-vkey vrt-num)
+  )
+  (num hr-hold) (layer-while-held numbers)
+
+  ;; Quick-Math
+  (num $qphyx-lat-hr1k) (multi
+    (on-press press-vkey vrt-quick-math)
+    (layer-while-held quick-math)
+    (on-release release-vkey vrt-quick-math)
+  )
+  (num $qphyx-lat-hr1k hr-hold) (layer-while-held quick-math)
 
   ;; Symbols
-  (sym) (tap-hold-release $tap-time $hold-time w (layer-while-held symbols))
-  (sym num) (layer-while-held symbols-math)
+  (sym) (multi
+    (on-press press-vkey vrt-sym)
+    (tap-hold-release $tap-time $hold-time w (layer-while-held symbols))
+    (on-release release-vkey vrt-sym)
+  )
+  (sym hr-hold) (layer-while-held symbols)
 
-  ;; Tab
+  ;; Symbols: Math
+  (sym num) (multi
+    (on-press press-vkey vrt-sym-math)
+    (layer-while-held symbols-math)
+    (on-release release-vkey vrt-sym-math)
+  )
+  (sym num hr-hold) (layer-while-held symbols-math)
+
+  ;; HR-Hold
   (t! home-row-hold-tab-fast-chord
     hr-hold
     $qphyx-lat-hr1k $qphyx-lat-hr2k $qphyx-lat-hr3k
     $qphyx-lat-hr1m $qphyx-lat-hr2m $qphyx-lat-hr3m
     vrt-hr1s vrt-hr2s vrt-hr3s
   )
-
-  ;; Mouse Alternative
-  (t! mouse-alt-chord mouse ralt-mod)
 
   ;; Mouse
   (t! mouse-chord
@@ -336,6 +443,10 @@
     $qphyx-lat-hr1m $qphyx-lat-hr2m $qphyx-lat-hr3m
     vrt-hr1s vrt-hr2s vrt-hr3s
   )
+
+  ;; Mouse Alternative
+  (t! mouse-alt-chord mouse ralt-mod hr-hold)
+  (mouse ralt-mod hr-hold) (layer-while-held mouse-alt)
 
   ;; Home-Row
   (t! home-row-side-chord
@@ -352,4 +463,5 @@
     $qphyx-lat-hr1m $qphyx-lat-hr2m $qphyx-lat-hr3m
     vrt-hr1s vrt-hr2s vrt-hr3s
   )
+  (navigation hr-hold) (layer-while-held navigation)
 )

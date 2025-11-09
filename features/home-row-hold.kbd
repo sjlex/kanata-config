@@ -50,14 +50,28 @@
 
 ;; Home-row Hold Key Template
 (deftemplate home-row-hold-key (
-  home-row-hold-key-action ;; Key action
+  hr-hold-key-action ;; Key action
 )
-  (tap-hold-release $tap-time $hold-time
-    $home-row-hold-key-action
+  (tap-hold-press $tap-time $hold-time
+    $hr-hold-key-action
     (multi
       (t! hr-stick)
       (t! hr-unstick)
+
+      ;; Hold layer
+      (switch
+        ((input virtual vrt-num)) (layer-while-held numbers) break
+        ((input virtual vrt-quick-math)) (layer-while-held quick-math) break
+        ((input virtual vrt-sym)) (layer-while-held symbols) break
+        ((input virtual vrt-sym-math)) (layer-while-held symbols-math) break
+        ((input virtual vrt-typ)) (layer-while-held typography) break
+        ((input virtual vrt-fun)) (layer-while-held functions) break
+        ((input virtual vrt-wrf)) (layer-while-held workflow) break
+        ((input virtual vrt-nav)) (layer-while-held navigation) break
+        ((input virtual vrt-nav-alt)) (layer-while-held navigation-alt) break
+        ((input virtual vrt-mouse)) (layer-while-held mouse) break
+        ((input virtual vrt-msa)) (layer-while-held mouse-alt) break
+      )
     )
   )
 )
-

@@ -5,21 +5,26 @@
 ;; Mouse-Alt Chord
 (deftemplate mouse-alt-chord (
   mouse-chord-key ;; Chord key
-  mouse-alt-chord-alt-key ;; Chord alt key
+  mouse-alt-chord-key ;; Chord alt key
+  hr-hold-key ;; HR-Hold key
 )
-  ($mouse-alt-chord-alt-key $mouse-chord-key) (multi
+  ($mouse-alt-chord-key) (layer-while-held qwerty)
+
+  ($mouse-alt-chord-key $mouse-chord-key) (multi
     (on-press press-vkey vrt-msa)
     (layer-while-held mouse)
     (on-release release-vkey vrt-msa)
   )
+
+  ($mouse-alt-chord-key $hr-hold-key) A-tab
 )
 
 ;; Mouse-Alt Key Template
 (deftemplate mouse-alt-key (
-  mouse-alt-chord-alt-key ;; Chord alt key
+  mouse-alt-chord-key ;; Chord alt key
 )
   (switch
-    ((input real $mouse-alt-chord-alt-key)) (multi
+    ((input real $mouse-alt-chord-key)) (multi
       (on-press press-vkey vrt-msa)
       (layer-while-held mouse)
       (on-release release-vkey vrt-msa)
@@ -36,6 +41,7 @@
   (multi
     $mouse-alt-key
     $mouse-alt-key-action
+
     (on-release release-vkey vrt-msa)
   )
 )

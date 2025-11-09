@@ -12,6 +12,25 @@
   (spc grv) lrld $chord-time all-released ()
 )
 
+;; Layers: Key States
+(defvirtualkeys
+  vrt-num nop0
+  vrt-quick-math nop0
+
+  vrt-sym nop0
+  vrt-sym-math nop0
+
+  vrt-typ nop0
+
+  vrt-fun nop0
+  vrt-wrf nop0
+
+  vrt-nav nop0
+  vrt-nav-alt nop0
+
+  vrt-mouse nop0
+)
+
 ;; Virtual nop0-9
 (defvirtualkeys
   vrt-nop0 nop0
@@ -31,17 +50,54 @@
   esc esc
   bspc bspc
 
-  lctl lctl
-  rctl rctl
-
   lalt lalt
   ralt ralt
 
-  lsft lsft
-  rsft rsft
+  lctl (multi
+    lctl
+    (switch
+      ((layer qphyx-lat)) (layer-while-held qwerty) break
+      ((layer qphyx-cyr)) (layer-while-held qwerty) break
+    )
+  )
 
-  lmet lmet
-  rmet rmet
+  rctl (multi
+    rctl
+    (switch
+      ((layer qphyx-lat)) (layer-while-held qwerty) break
+      ((layer qphyx-cyr)) (layer-while-held qwerty) break
+    )
+  )
+
+  lsft (multi
+    lsft
+    (switch
+      ((layer qphyx-lat)) (layer-while-held qwerty) break
+    )
+  )
+
+  rsft (multi
+    rsft
+    (switch
+      ((layer qphyx-lat)) (layer-while-held qwerty) break
+    )
+  )
+
+  lmet (multi
+    lmet
+    (switch
+      ((layer qphyx-lat)) (layer-while-held qwerty) break
+      ((layer qphyx-cyr)) (layer-while-held qwerty) break
+    )
+  )
+
+  rmet (multi
+    rmet
+    (switch
+      ((layer qphyx-lat)) (layer-while-held qwerty) break
+      ((layer qphyx-cyr)) (layer-while-held qwerty) break
+    )
+  )
 )
 
 ;; Hold for Hub, tap for reset modifier keys and switch to the base layer

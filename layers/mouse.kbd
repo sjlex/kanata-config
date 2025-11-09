@@ -83,5 +83,5 @@
   mwc (multi lmet lalt (unmod (lsft rsft lctl rctl) mrgt)) ;; Close window
 
   mwsn (multi lmet lalt (unmod (lsft rsft lctl rctl) pgup)) ;; Next laser stacked window
-  mwat (multi lalt (unmod (lsft rsft lctl rctl lmet rmet) mmid)) ;; Toggle always on top
+  ;; mwat (multi lalt (unmod (lsft rsft lctl rctl lmet rmet) mmid)) ;; Toggle always on top
 )
