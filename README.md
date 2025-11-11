@@ -45,7 +45,7 @@
 
 ## Overview
 
-My personal Kanata configuration for non-QMK/non-ZMK keyboards.
+My personal [Kanata](https://github.com/jtroo/kanata) configuration for non-QMK/non-ZMK keyboards.
 
 Features the qPhyx base, specialized layers, and an enhanced home row with sticky and hold modes.
 
@@ -109,7 +109,7 @@ Features the qPhyx base, specialized layers, and an enhanced home row with stick
 
 ### Prerequisites
 
-- Kanata v1.9.0 or greater
+- [Kanata v1.9.0](https://github.com/jtroo/kanata/releases/tag/v1.9.0) or greater
 
 <h3 id="build-kanata">Build Kanata</h3>
 
@@ -149,16 +149,16 @@ target\release\kanata.exe --quiet --nodelay --cfg "main.kbd"
 
 This project may include or reference third-party assets under their own licenses. Any such assets are used in accordance with their licensing terms.
 
-- Inter
+- [Inter Font](https://fonts.google.com/specimen/Inter)
   - Source: [Inter](https://fonts.google.com/specimen/Inter)
   - License: [SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007](https://fonts.google.com/specimen/Inter/license)
 
-- Jersey 20
+- [Jersey 20 Font](https://fonts.google.com/specimen/Jersey+20)
   - Source: [Jersey 20](https://fonts.google.com/specimen/Jersey+20)
   - License: [SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007](https://fonts.google.com/specimen/Jersey+20/license)
 
-- Material Symbols
-  - Source:
+- [Material Symbols and Icons](https://github.com/google/material-design-icons)
+  - Sources:
     - [Material Icons](https://fonts.google.com/icons)
     - [Material Symbols Github](https://github.com/google/material-design-icons)
   - License: [Apache License Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.html)
