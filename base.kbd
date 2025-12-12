@@ -31,6 +31,28 @@
   vrt-mouse nop0
 )
 
+;; Home-row: Key States
+(defvirtualkeys
+  vrt-hl3v nop0
+  vrt-hl2v nop0
+  vrt-hl1v nop0
+  ;; ---
+  vrt-hr1v nop0
+  vrt-hr2v nop0
+  vrt-hr3v nop0
+)
+
+;; Home-row: Sticky Key States
+(defvirtualkeys
+  vrt-hl3s lalt
+  vrt-hl2s lctl
+  vrt-hl1s lsft
+  ;; ---
+  vrt-hr1s lsft
+  vrt-hr2s lctl
+  vrt-hr3s lalt
+)
+
 ;; Virtual nop0-9
 (defvirtualkeys
   vrt-nop0 nop0
@@ -100,10 +122,71 @@
   )
 )
 
+;; Release all modifiers for clean key combinations
+(defalias
+  unmod (on-press tap-vkey unmod)
+)
+
+;; Virtual key that releases all modifier keys
+(defvirtualkeys
+  unmod (multi
+    (release-key lmet)
+    (release-key lalt)
+    (release-key lctl)
+    (release-key lsft)
+    ;; ---
+    (release-key rsft)
+    (release-key rctl)
+    (release-key ralt)
+    (release-key rmet)
+  )
+)
+
+(defalias
+  hr-unstick (t! hr-unstick)
+  hr-unmod (t! hr-unmod)
+)
+
+;; Unstick the home-row
+(deftemplate hr-unstick ()
+  (on-release tap-vkey hr-unstick)
+)
+
+;; Unmod the home-row
+(deftemplate hr-unmod ()
+  (on-release tap-vkey hr-unmod)
+)
+
+(defvirtualkeys
+  hr-unstick (multi
+    (on-press release-vkey vrt-hl3s)
+    (on-press release-vkey vrt-hl2s)
+    (on-press release-vkey vrt-hl1s)
+    ;; ---
+    (on-press release-vkey vrt-hr1s)
+    (on-press release-vkey vrt-hr2s)
+    (on-press release-vkey vrt-hr3s)
+  )
+  hr-unmod (multi
+    (on-press release-vkey vrt-hl3v)
+    (on-press release-vkey vrt-hl2v)
+    (on-press release-vkey vrt-hl1v)
+    ;; ---
+    (on-press release-vkey vrt-hr1v)
+    (on-press release-vkey vrt-hr2v)
+    (on-press release-vkey vrt-hr3v)
+  )
+)
+
 ;; Hold for Hub, tap for reset modifier keys and switch to the base layer
 (defalias
   caps (tap-hold-press $tap-time $hold-time
-    (multi @unmod @base)
+    (multi
+      @unmod
+      @hr-unmod
+      @hr-unstick
+      @base
+    )
     (layer-while-held hub)
   )
 )

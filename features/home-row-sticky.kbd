@@ -2,18 +2,7 @@
 ;; Home-row Sticky
 ;; =============================================================================
 
-;; Home-row: Sticky Key States
-(defvirtualkeys
-  vrt-hl3s lalt
-  vrt-hl2s lctl
-  vrt-hl1s lsft
-  ;; ---
-  vrt-hr1s lsft
-  vrt-hr2s lctl
-  vrt-hr3s lalt
-)
-
-;; Stick the home row
+;; Stick the home-row
 (defalias
   hr-stick (t! hr-stick)
 )
@@ -28,23 +17,6 @@
     ((input virtual vrt-hr2v)) (on-press press-vkey vrt-hr2s) fallthrough
     ((input virtual vrt-hr3v)) (on-press press-vkey vrt-hr3s) fallthrough
     () nop0 break
-  )
-)
-
-;; Unstick the home row
-(deftemplate hr-unstick ()
-  (on-release tap-vkey hr-unstick)
-)
-
-(defvirtualkeys
-  hr-unstick (multi
-    (on-press release-vkey vrt-hl3s)
-    (on-press release-vkey vrt-hl2s)
-    (on-press release-vkey vrt-hl1s)
-    ;; ---
-    (on-press release-vkey vrt-hr1s)
-    (on-press release-vkey vrt-hr2s)
-    (on-press release-vkey vrt-hr3s)
   )
 )
 
