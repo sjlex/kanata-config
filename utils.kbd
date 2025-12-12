@@ -2,26 +2,6 @@
 ;; Utility Functions and Templates
 ;; =============================================================================
 
-;; Release all modifiers for clean key combinations
-(defalias
-  unmod (on-press tap-vkey unmod)
-)
-
-;; Virtual key that releases all modifier keys
-(defvirtualkeys
-  unmod (multi
-    (release-key lmet)
-    (release-key lalt)
-    (release-key lctl)
-    (release-key lsft)
-    ;; ---
-    (release-key rsft)
-    (release-key rctl)
-    (release-key ralt)
-    (release-key rmet)
-  )
-)
-
 ;; Unicode key
 (deftemplate unicode-key (key-name unicode-lower unicode-upper original-key)
   $key-name (fork

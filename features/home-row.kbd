@@ -2,17 +2,6 @@
 ;; Home-row
 ;; =============================================================================
 
-;; Home-row: Key States
-(defvirtualkeys
-  vrt-hl3v nop0
-  vrt-hl2v nop0
-  vrt-hl1v nop0
-  ;; ---
-  vrt-hr1v nop0
-  vrt-hr2v nop0
-  vrt-hr3v nop0
-)
-
 ;; Home-row Chord
 (deftemplate home-row-side-chord (
   hr-k1 hr-k2 hr-k3 ;; HR-Keys
