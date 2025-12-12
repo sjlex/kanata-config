@@ -26,8 +26,9 @@
 
 ;; Primary layouts (ORDER CRITICAL - base layer must load first)
 (include layouts\qPhyx\qphyx-lat.kbd)  ;; Primary Latin layout
-(include layouts\qPhyx\qphyx-cyr.kbd)  ;; Cyrillic layout
+(include layouts\qPhyx\qphyx-cyr.kbd)  ;; qPhyx Cyrillic layout
 (include layouts\Qwerty\qwerty.kbd)    ;; QWERTY layout
+(include layouts\Cyrillic\cyrillic.kbd)    ;; Cyrillic layout
 
 ;; =============================================================================
 ;; Features

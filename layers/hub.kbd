@@ -6,7 +6,7 @@
 (deflayer (hub icon assets\icons\hub.png)
   @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
   •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
-  @hbh   •      •      •      @qwer  •      #||#      •      @qwer  •      •      •      @hbh   •      •
+  @hbh   •      •      @cyr   @qwer  •      #||#      •      @qwer  @cyr   •      •      @hbh   •      •
   @caps  •      •      @qcyr  @qlat  •      #||#      •      @qlat  @qcyr  •      •      •             @ret
   @lsft  •      •      @pnt   @game  •      #||#      •      @game  @pnt   •      •                    @rsft
   @lctl  @lmet  @lalt  @spc                 #||#                                                @ralt  @rctl

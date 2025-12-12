@@ -1,0 +1,64 @@
+;; =============================================================================
+;; Layers
+;; =============================================================================
+
+;; Cyrillic
+(deflayer (cyrillic icon assets\icons\cyrillic.png)
+  esc    f1     f2     f3     f4     f5     #||#      f6     f7     f8     f9     f10    f11    f12    volu
+  @\ё    1      2      3      4      5      #||#      6      7      8      9      0      -      =      bspc
+  tab    @\й    @\ц    @\у    @\к    @\е    #||#      @\н    @\г    @\ш    @\щ    @\з    @\х    @\ъ    \
+  @caps  @\ф    @\ы    @\в    @\а    @\п    #||#      @\р    @\о    @\л    @\д    @\ж    @\э           ret
+  lsft   @\я    @\ч    @\с    @\м    @\и    #||#      @\т    @\ь    @\б    @\ю    @\.                  rsft
+  lctl   lmet   lalt   spc                  #||#                                                ralt   rctl
+)
+
+;; =============================================================================
+;; Definitions
+;; =============================================================================
+
+;; Unicode-key mapping
+(defalias
+  (t! unicode-key \й й Й q)
+  (t! unicode-key \ц ц Ц w)
+  (t! unicode-key \у у У e)
+  (t! unicode-key \к к К r)
+  (t! unicode-key \е е Е t)
+  (t! unicode-key \н н Н y)
+  (t! unicode-key \г г Г u)
+  (t! unicode-key \ш ш Ш i)
+  (t! unicode-key \щ щ Щ o)
+  (t! unicode-key \з з З p)
+  (t! unicode-key \х х Х [)
+  (t! unicode-key \ъ ъ Ъ ])
+  (t! unicode-key \ф ф Ф a)
+  (t! unicode-key \ы ы Ы s)
+  (t! unicode-key \в в В d)
+  (t! unicode-key \а а А f)
+  (t! unicode-key \п п П g)
+  (t! unicode-key \р р Р h)
+  (t! unicode-key \о о О j)
+  (t! unicode-key \л л Л k)
+  (t! unicode-key \д д Д l)
+  (t! unicode-key \ж ж Ж ;)
+  (t! unicode-key \э э Э ')
+  (t! unicode-key \я я Я z)
+  (t! unicode-key \ч ч Ч x)
+  (t! unicode-key \с с С c)
+  (t! unicode-key \м м М v)
+  (t! unicode-key \и и И b)
+  (t! unicode-key \т т Т n)
+  (t! unicode-key \ь ь Ь m)
+  (t! unicode-key \б б Б ,)
+  (t! unicode-key \ю ю Ю .)
+  (t! unicode-key \ё ё Ё grv)
+  (t! unicode-key \. . , /)
+)
+
+;; =============================================================================
+;; Cyrillic
+;; =============================================================================
+
+(defalias
+  cyr (layer-switch cyrillic)
+  cyrh (layer-while-held cyrillic)
+)
