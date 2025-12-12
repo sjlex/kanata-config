@@ -23,8 +23,8 @@
 )
 
 ;; Unicode key
-(deftemplate unicode-key (unicode-lower unicode-upper original-key)
-  $unicode-lower (fork
+(deftemplate unicode-key (key-name unicode-lower unicode-upper original-key)
+  $key-name (fork
     (fork
       (unicode $unicode-lower)
       (unicode $unicode-upper)
