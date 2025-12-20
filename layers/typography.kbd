@@ -53,7 +53,7 @@
 )
 
 (defalias
-  tpaah (tap-hold-press $tap-time $hold-time @tpaa (layer-while-held mouse))
+  tpaah (tap-hold-release $tap-time $hold-time @tpaa (layer-while-held mouse))
   tpmr (layer-while-held mouse)
 
   tpspc (tap-hold-release $tap-time $hold-time @tpNBS @spc)

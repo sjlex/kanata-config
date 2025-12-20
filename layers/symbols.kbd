@@ -48,6 +48,6 @@
 )
 
 (defalias
-  sm`h (tap-hold-press $tap-time $hold-time @sm` (layer-while-held mouse))
-  sm'h (tap-hold-press $tap-time $hold-time @sm' (layer-while-held mouse))
+  sm`h (tap-hold-release $tap-time $hold-time @sm` (layer-while-held mouse))
+  sm'h (tap-hold-release $tap-time $hold-time @sm' (layer-while-held mouse))
 )
