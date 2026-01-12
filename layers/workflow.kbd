@@ -6,7 +6,7 @@
 (deflayer (workflow icon assets\icons\workflow.png)
   @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
   •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
-  @wfh   @wflkh @wfbl  @wfqcl @wfkp  prtsc  #||#      @wffp  mute   next   pp     @msh   @wfh   •      •
+  @wfh   @wflkh @wfb   @wfqcl @wfkp  prtsc  #||#      @wffp  mute   next   pp     @msh   @wfh   •      •
   @caps  •      @wfuz  @wfob  @wfsbl @wfbr  #||#      @wffn  @wfmsd prev   @wfmsu •      •             @ret
   @lsft  •      •      •      @wfex  •      #||#      @wffs  •      •      •      •                    @rsft
   @lctl  @lmet  @lalt  @spc                 #||#                                                @ralt  @rctl
@@ -31,6 +31,8 @@
   wflk $cmd-lock-station ;; Lock Station
   wfslp $cmd-sleep ;; Sleep
   wfbl (multi lctl lsft (unmod (lmet rmet lalt ralt) q)) ;; Black-Out desktop
+  wfmf $cmd-monitor-off ;; Monitor off
+  wfb (multi @wfbl @wfmf) ;; Full Black-Out
 
   wfsbl $cmd-sublime-text ;; Sublime Text
   wfqcl $cmd-qalculate ;; Qalculate
