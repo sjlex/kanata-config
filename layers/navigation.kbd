@@ -94,8 +94,11 @@
 
 (defalias
   ;; History navigation
-  nahu fwd ;; Browser/app history forward
-  nahd bck ;; Browser/app history back
+  nahu mfwd ;; Browser/app history forward (Mouse5)
+  nahd mbck ;; Browser/app history back (Mouse4)
+
+  ;; nahu fwd ;; Browser/app history forward
+  ;; nahd bck ;; Browser/app history back
 
   ;; Tab navigation
   natr (multi lctl (unmod (lsft rsft lmet rmet lalt ralt) tab)) ;; tab-nav next
