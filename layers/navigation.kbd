@@ -16,9 +16,9 @@
 (deflayer (navigation-alt icon assets\icons\navigation-alt.png)
   @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
   •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
-  @nvah  •      home   @nahu  end    @natl  #||#      @natl  home   @nahu  end    ins    @nvah  •      •
-  @caps  •      @nslr  @nahd  @nsll  @natr  #||#      @natr  @nslr  @nahd  @nsll  •      •             @ret
-  @lsft  •      •      •      •      •      #||#      •      @natl  @natr  •      •                    @rsft
+  @nvah  •      home   @nahu  end    @natp  #||#      @nabp  home   @nahu  end    ins    @nvah  •      •
+  @caps  •      @nslr  @nahd  @nsll  @natn  #||#      @nabn  @nslr  @nahd  @nsll  •      •             @ret
+  @lsft  •      •      •      •      •      #||#      •      @natp  @natn  •      •                    @rsft
   @lctl  @lmet  @lalt  @spc                 #||#                                                @ralt  @rctl
 )
 
@@ -101,6 +101,10 @@
   ;; nahd bck ;; Browser/app history back
 
   ;; Tab navigation
-  natr (multi lctl (unmod (lsft rsft lmet rmet lalt ralt) tab)) ;; tab-nav next
-  natl (multi lctl lsft (unmod (lmet rmet lalt ralt) tab)) ;; tab-nav prev
+  natn (multi lctl (unmod (lsft rsft lmet rmet lalt ralt) tab)) ;; tab-nav next
+  natp (multi lctl lsft (unmod (lmet rmet lalt ralt) tab)) ;; tab-nav prev
+
+  ;; Bookmark navigation
+  nabn (multi lctl lalt (unmod (lmet rmet lsft rsft) right)) ;; bookmark next
+  nabp (multi lctl lalt (unmod (lmet rmet lsft rsft) left)) ;; bookmark prev
 )
