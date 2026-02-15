@@ -69,6 +69,7 @@
         ((input virtual vrt-wrf)) (layer-while-held workflow) break
         ((input virtual vrt-nav)) (layer-while-held navigation) break
         ((input virtual vrt-nav-alt)) (layer-while-held navigation-alt) break
+        ((input virtual vrt-nav-extra)) (layer-while-held navigation-extra) break
         ((input virtual vrt-mouse)) (layer-while-held mouse) break
         ((input virtual vrt-msa)) (layer-while-held mouse-alt) break
       )

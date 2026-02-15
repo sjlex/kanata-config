@@ -27,6 +27,7 @@
 
   vrt-nav nop0
   vrt-nav-alt nop0
+  vrt-nav-extra nop0
 
   vrt-mouse nop0
 )
