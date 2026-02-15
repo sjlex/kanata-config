@@ -6,7 +6,7 @@
 (deflayer (qphyx-lat icon assets\icons\qphyx-lat.png)
   @esc   _      _      _      _      _      #||#      _      _      _      _      _      _      _      _
   •      _      _      _      _      _      #||#      _      _      _      _      _      _      _      @bspc
-  @qlhhl @msq   p      @h!    @y!    @x!    #||#      @z!    @w!    @d!    l      @msv   @qlhhr •      •
+  @qlhl  @msq   p      @h!    @y!    @x!    #||#      @z!    @w!    @d!    l      @msv   @qlhr  •      •
   @caps  @e!    @a!    @o!    @i!    @u!    #||#      @m!    @s!    @t!    @r!    @n!    c             @ret
   @lsft  @j!    @nlcut @nlcpy @k!    •      #||#      g      @f!    @nrcpy @nrcut @b!                  @rsft
   @lctl  @lmet  @qlatl @spc                 #||#                                                @qlatr @rctl
@@ -103,16 +103,20 @@
   spc-qll (multi
     (t! bypass-unused-bind qphyx-lat-left-chord navigation)
     (t! bypass-unused-bind qphyx-lat-nav-alt-left-chord navigation)
+    (t! bypass-unused-bind qphyx-lat-nav-wm-panel-left-chord navigation)
     (t! bypass-unused-bind qphyx-lat-nav-left-chord navigation)
   )
 
   ;; Left hold-key for sticky home-row modifiers and layers
-  qlhhl (multi
+  qlhl (multi
     (t! home-row-hold-key (chord qphyx-lat-left-chord hr-hold))
+  )
 
+  qlhhl (multi
     ;; Bypass unused chord bindings
     (t! bypass-unused-bind qphyx-lat-typography-left-chord hr-hold)
     (t! bypass-unused-bind qphyx-lat-nav-alt-left-chord hr-hold)
+    (t! bypass-unused-bind qphyx-lat-nav-wm-panel-left-chord hr-hold)
     (t! bypass-unused-bind qphyx-lat-functions-left-chord hr-hold)
   )
 
@@ -129,14 +133,14 @@
   qlatl (t! mouse-alt-key-mod lalt (chord qphyx-lat-left-chord lalt-mod))
 
   ;; Layer Activation Keys
-  e! (chord qphyx-lat-nav-alt-left-chord wrf)    ;; Workflow layer
-  h! (chord qphyx-lat-left-chord num)            ;; Numbers layer
-  y! (chord qphyx-lat-left-chord sym)            ;; Symbols layer
-  x! (chord qphyx-lat-typography-left-chord typ) ;; Typography layer
-  u! (chord qphyx-lat-functions-left-chord fun)  ;; Functions layer
+  e! (chord qphyx-lat-nav-alt-left-chord wrf)             ;; Workflow layer
+  j! (chord qphyx-lat-nav-wm-panel-left-chord wm-panel)   ;; WM-Panel layer
+  h! (chord qphyx-lat-left-chord num)                     ;; Numbers layer
+  y! (chord qphyx-lat-left-chord sym)                     ;; Symbols layer
+  x! (chord qphyx-lat-typography-left-chord typ)          ;; Typography layer
+  u! (chord qphyx-lat-functions-left-chord fun)           ;; Functions layer
 
   ;; Editing keys
-  j! (chord qphyx-lat-nav-left-chord save)    ;; Save
   nlcut (chord qphyx-lat-nav-left-chord cut)  ;; Cut
   nlcpy (chord qphyx-lat-nav-left-chord copy) ;; Copy
   k! (chord qphyx-lat-nav-left-chord paste)   ;; Paste
@@ -158,22 +162,25 @@
   f! (chord qphyx-lat-nav-right-chord paste)   ;; Paste
   nrcpy (chord qphyx-lat-nav-right-chord copy) ;; Copy
   nrcut (chord qphyx-lat-nav-right-chord cut)  ;; Cut
-  b! (chord qphyx-lat-nav-right-chord save)    ;; Save
 
   ;; Layer Activation Keys
-  n! (chord qphyx-lat-nav-alt-right-chord wrf)     ;; Workflow layer
-  d! (chord qphyx-lat-right-chord num)             ;; Numbers layer
-  w! (chord qphyx-lat-right-chord sym)             ;; Symbols layer
-  z! (chord qphyx-lat-typography-right-chord typ)  ;; Typography layer
-  m! (chord qphyx-lat-functions-right-chord fun)   ;; Functions layer
+  n! (chord qphyx-lat-nav-alt-right-chord wrf)            ;; Workflow layer
+  b! (chord qphyx-lat-nav-wm-panel-right-chord wm-panel)  ;; WM-Panel layer
+  d! (chord qphyx-lat-right-chord num)                    ;; Numbers layer
+  w! (chord qphyx-lat-right-chord sym)                    ;; Symbols layer
+  z! (chord qphyx-lat-typography-right-chord typ)         ;; Typography layer
+  m! (chord qphyx-lat-functions-right-chord fun)          ;; Functions layer
 
   ;; Right hold-key for sticky home-row modifiers and layers
   qlhhr (multi
     (t! home-row-hold-key (chord qphyx-lat-right-chord hr-hold))
+  )
 
+  qlhr (multi
     ;; Bypass unused chord bindings
     (t! bypass-unused-bind qphyx-lat-typography-right-chord hr-hold)
     (t! bypass-unused-bind qphyx-lat-nav-alt-right-chord hr-hold)
+    (t! bypass-unused-bind qphyx-lat-nav-wm-panel-right-chord hr-hold)
     (t! bypass-unused-bind qphyx-lat-functions-right-chord hr-hold)
   )
 
@@ -193,6 +200,7 @@
   spc-qlr (multi
     (t! bypass-unused-bind qphyx-lat-right-chord navigation)
     (t! bypass-unused-bind qphyx-lat-nav-alt-right-chord navigation)
+    (t! bypass-unused-bind qphyx-lat-nav-wm-panel-right-chord navigation)
     (t! bypass-unused-bind qphyx-lat-nav-right-chord navigation)
   )
 )
@@ -213,12 +221,10 @@
 ;; Left Side
 ;; Navigation hotkeys
 (defchords qphyx-lat-nav-left-chord $chord-time
-  (save) j
   (cut) •
   (copy) •
   (paste) k
 
-  (save navigation) @save
   (cut navigation) @cut
   (copy navigation) @copy
   (paste navigation) @paste
@@ -243,6 +249,22 @@
     (on-release release-vkey vrt-nav-alt)
   )
   (navigation wrf hr-hold) (layer-while-held navigation-alt)
+)
+
+;; Navigation WM-Panel
+(defchords qphyx-lat-nav-wm-panel-left-chord $chord-time
+  (wm-panel) (multi
+    (on-press press-vkey vrt-nav-wm-panel-key)
+    j
+    (on-release release-vkey vrt-nav-wm-panel-key)
+  )
+
+  (navigation wm-panel) (multi
+    (on-press press-vkey vrt-nav-wm-panel)
+    (layer-while-held navigation-wm-panel)
+    (on-release release-vkey vrt-nav-wm-panel)
+  )
+  (navigation wm-panel hr-hold) (layer-while-held navigation-wm-panel)
 )
 
 ;; Typography
@@ -335,18 +357,24 @@
     $qphyx-lat-hl1m $qphyx-lat-hl2m $qphyx-lat-hl3m
     vrt-hl1s vrt-hl2s vrt-hl3s
   )
-  (navigation hr-hold) (layer-while-held navigation)
+
+  ;; Navigation WM
+  (t! navigation-wm-chord
+    navigation
+    hr-hold
+    $qphyx-lat-hl1k $qphyx-lat-hl2k $qphyx-lat-hl3k
+    $qphyx-lat-hl1m $qphyx-lat-hl2m $qphyx-lat-hl3m
+    vrt-hl1s vrt-hl2s vrt-hl3s
+  )
 )
 
 ;; Right Side
 ;; Navigation hotkeys
 (defchords qphyx-lat-nav-right-chord $chord-time
-  (save) b
   (cut) •
   (copy) •
   (paste) f
 
-  (save navigation) @save
   (cut navigation) @cut
   (copy navigation) @copy
   (paste navigation) @paste
@@ -371,6 +399,22 @@
     (on-release release-vkey vrt-nav-alt)
   )
   (navigation wrf hr-hold) (layer-while-held navigation-alt)
+)
+
+;; Navigation WM-Panel
+(defchords qphyx-lat-nav-wm-panel-right-chord $chord-time
+  (wm-panel) (multi
+    (on-press press-vkey vrt-nav-wm-panel-key)
+    b
+    (on-release release-vkey vrt-nav-wm-panel-key)
+  )
+
+  (navigation wm-panel) (multi
+    (on-press press-vkey vrt-nav-wm-panel)
+    (layer-while-held navigation-wm-panel)
+    (on-release release-vkey vrt-nav-wm-panel)
+  )
+  (navigation wm-panel hr-hold) (layer-while-held navigation-wm-panel)
 )
 
 ;; Typography
@@ -463,5 +507,13 @@
     $qphyx-lat-hr1m $qphyx-lat-hr2m $qphyx-lat-hr3m
     vrt-hr1s vrt-hr2s vrt-hr3s
   )
-  (navigation hr-hold) (layer-while-held navigation)
+
+  ;; Navigation WM
+  (t! navigation-wm-chord
+    navigation
+    hr-hold
+    $qphyx-lat-hr1k $qphyx-lat-hr2k $qphyx-lat-hr3k
+    $qphyx-lat-hr1m $qphyx-lat-hr2m $qphyx-lat-hr3m
+    vrt-hr1s vrt-hr2s vrt-hr3s
+  )
 )

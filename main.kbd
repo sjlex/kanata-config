@@ -37,6 +37,7 @@
 (include features\mouse-alt.kbd)
 
 ;; Navigation
+(include features\navigation-wm.kbd)
 (include features\navigation.kbd)
 
 ;; =============================================================================
@@ -58,6 +59,7 @@
 
 ;; Layers
 (include layers\navigation.kbd)
+(include layers\navigation-wm.kbd)
 (include layers\mouse.kbd)
 (include layers\numbers.kbd)
 (include layers\symbols.kbd)

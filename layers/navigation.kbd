@@ -8,7 +8,7 @@
   •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
   @nvh   @nvesc ret    @nlu   bspc   tab    #||#      tab    ret    @nru   bspc   @nvesc @nvh   •      •
   @caps  @nvah  @nll   @nld   @nlr   del    #||#      del    @nrl   @nrd   @nrr   @nvah  •             @ret
-  @lsft  @nsav  @ncut  @ncpy  @npst  @nudo  #||#      @nrdo  @npst  @ncpy  @ncut  @nsav                @rsft
+  @lsft  @nwph  @ncut  @ncpy  @npst  @nudo  #||#      @nrdo  @npst  @ncpy  @ncut  @nwph                @rsft
   @lctl  @lmet  @lalt  @spc                 #||#                                                @ralt  @rctl
 )
 
@@ -30,7 +30,7 @@
   nav (layer-switch navigation)
 
   nv (layer-switch navigation)
-  nvh (layer-while-held navigation)
+  nvh (layer-while-held navigation-wm)
 )
 
 ;; Basic cursor movement
@@ -105,6 +105,6 @@
   natp (multi lctl lsft (unmod (lmet rmet lalt ralt) tab)) ;; tab-nav prev
 
   ;; Bookmark navigation
-  nabn (multi lctl lalt (unmod (lmet rmet lsft rsft) right)) ;; bookmark next
-  nabp (multi lctl lalt (unmod (lmet rmet lsft rsft) left)) ;; bookmark prev
+  nabn (multi lalt (unmod (lmet rmet lsft rsft lctl rctl) pgdn)) ;; Bookmark next
+  nabp (multi lalt (unmod (lmet rmet lsft rsft lctl rctl) pgup)) ;; Bookmark prev
 )

@@ -38,10 +38,16 @@
   (tap-hold-press $tap-time $hold-time
     $nav-key-action
     (multi
-        (layer-while-held navigation)
+      (t! hr-stick) ;; Enable sticky modifiers
+      (t! hr-unstick) ;; Disable sticky modifiers on release
 
-        (t! hr-stick) ;; Enable sticky modifiers
-        (t! hr-unstick) ;; Disable sticky modifiers on release
-      )
+      (layer-while-held navigation)
+
+      ;; Navigation WM
+      (t! navigation-wm-key)
+
+      ;; Navigation WM-Panel
+      (t! navigation-wm-panel-key)
+    )
   )
 )

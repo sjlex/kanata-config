@@ -1,0 +1,120 @@
+;; =============================================================================
+;; Navigation WM Feature
+;; =============================================================================
+
+;; Home-row Sticky Chord (Navigation WM)
+(deftemplate home-row-sticky-nav-wm-chord (
+  chord-key ;; Chord key
+  chord-key2 ;; Chord key 2
+
+  chord-base-action ;; Chord base action
+
+  hr-k1 hr-k2 hr-k3 ;; HR-Keys
+  hr-m1 hr-m2 hr-m3 ;; HR-Mods
+  hr-ms1 hr-ms2 hr-ms3 ;; HR-Mods-State
+)
+  ;; Chord base action
+  ($chord-key $chord-key2) $chord-base-action
+
+  ;; k1
+  ($hr-k1 $chord-key $chord-key2) (multi
+    (on-press press-vkey $hr-ms1) $hr-m1 (on-release release-vkey $hr-ms1)
+
+    $chord-base-action
+  )
+
+  ($hr-k1 $hr-k2 $chord-key $chord-key2) (multi
+    (on-press press-vkey $hr-ms1) $hr-m1 (on-release release-vkey $hr-ms1)
+    (on-press press-vkey $hr-ms2) $hr-m2 (on-release release-vkey $hr-ms2)
+
+    $chord-base-action
+  )
+
+  ($hr-k1 $hr-k3 $chord-key $chord-key2) (multi
+    (on-press press-vkey $hr-ms1) $hr-m1 (on-release release-vkey $hr-ms1)
+    (on-press press-vkey $hr-ms3) $hr-m3 (on-release release-vkey $hr-ms3)
+
+    $chord-base-action
+  )
+
+  ;; k2
+  ($hr-k2 $chord-key $chord-key2) (multi
+    (on-press press-vkey $hr-ms2) $hr-m2 (on-release release-vkey $hr-ms2)
+
+    $chord-base-action
+  )
+
+  ($hr-k2 $hr-k3 $chord-key $chord-key2) (multi
+    (on-press press-vkey $hr-ms2) $hr-m2 (on-release release-vkey $hr-ms2)
+    (on-press press-vkey $hr-ms3) $hr-m3 (on-release release-vkey $hr-ms3)
+
+    $chord-base-action
+  )
+
+  ;; k3
+  ($hr-k3 $chord-key $chord-key2) (multi
+    (on-press press-vkey $hr-ms3) $hr-m3 (on-release release-vkey $hr-ms3)
+
+    $chord-base-action
+  )
+
+  ;; k1 k2 k3
+  ($hr-k1 $hr-k2 $hr-k3 $chord-key $chord-key2) (multi
+    (on-press press-vkey $hr-ms1) $hr-m1 (on-release release-vkey $hr-ms1)
+    (on-press press-vkey $hr-ms2) $hr-m2 (on-release release-vkey $hr-ms2)
+    (on-press press-vkey $hr-ms3) $hr-m3 (on-release release-vkey $hr-ms3)
+
+    $chord-base-action
+  )
+)
+
+;; Navigation WM Chord
+(deftemplate navigation-wm-chord (
+  nav-chord-key ;; Chord key
+  nav-chord-key2 ;; Chord key2
+
+  hr-k1 hr-k2 hr-k3 ;; HR-Keys
+  hr-m1 hr-m2 hr-m3 ;; HR-Mods
+  hr-ms1 hr-ms2 hr-ms3 ;; HR-Mods-State
+)
+  (t! home-row-sticky-nav-wm-chord
+    ;; Chord key
+    $nav-chord-key
+
+    ;; Chord key 2
+    $nav-chord-key2
+
+    ;; Chord base action
+    (multi
+      (on-press press-vkey vrt-nav-wm)
+      (layer-while-held navigation-wm)
+      (on-release release-vkey vrt-nav-wm)
+    )
+
+    $hr-k1 $hr-k2 $hr-k3 ;; HR-Keys
+    $hr-m1 $hr-m2 $hr-m3 ;; HR-Mods
+    $hr-ms1 $hr-ms2 $hr-ms3 ;; HR-Mods-State
+  )
+)
+
+;; Navigation WM Key Check
+(deftemplate navigation-wm-key ()
+  (switch
+    ((or (input virtual vrt-hold) (input real tab))) (multi
+      (on-press press-vkey vrt-nav-wm)
+      (layer-while-held navigation-wm)
+      (on-release release-vkey vrt-nav-wm)
+    ) break
+  )
+)
+
+;; Navigation WM-Panel Key Check
+(deftemplate navigation-wm-panel-key ()
+  (switch
+    ((input virtual vrt-nav-wm-panel-key)) (multi
+      (on-press press-vkey vrt-nav-wm-panel)
+      (layer-while-held navigation-wm-panel)
+      (on-release release-vkey vrt-nav-wm-panel)
+    ) break
+  )
+)
