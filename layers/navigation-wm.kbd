@@ -46,7 +46,7 @@
 )
 
 (defalias
-  nwt C-A-tab ;; Task Switcher (Sticky Mode)
+  nwt @alt-tab-sticky ;; Task Switcher
 
   nwtp (multi lmet lsft (unmod (lctl rctl lalt ralt) t)) ;; Taskbar prev
   nwtn (multi lmet (unmod (lsft rsft lctl rctl lalt ralt) t)) ;; Taskbar next
