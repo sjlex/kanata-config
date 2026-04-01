@@ -38,11 +38,11 @@
   ;; Desktop Switching
   ;; S: Move window
   ;; C-S: Copy window
-  ;; C: Focus window (wip)
-  nwr A-4
-  nwl A-1
-  nwu A-2
-  nwd A-3
+  ;; C: Move window (FancyZones)
+  nwr (macro-release-cancel A-4)
+  nwl (macro-release-cancel A-1)
+  nwu (macro-release-cancel A-2)
+  nwd (macro-release-cancel A-3)
 )
 
 (defalias
