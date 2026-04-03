@@ -19,7 +19,9 @@
     $hr-hold-key-action
 
     ;; Chord action
-    nop0
+    (multi
+      (on-press press-vkey vrt-hold) nop0 (on-release release-vkey vrt-hold)
+    )
 
     $hr-k1 $hr-k2 $hr-k3 ;; HR-Keys
     $hr-m1 $hr-m2 $hr-m3 ;; HR-Mods
@@ -39,8 +41,8 @@
     ;; Chord key
     $hr-hold-chord-key
 
-    ;; Key action (Alt + Tab)
-    (tap-hold-release $tap-time $hold-time @window-switch-fast nop0)
+    ;; Key action
+    (tap-dance $tap-dance-time (@window-switch-fast @alt-tab-sticky))
 
     $hr-k1 $hr-k2 $hr-k3 ;; HR-Keys
     $hr-m1 $hr-m2 $hr-m3 ;; HR-Mods
@@ -55,8 +57,11 @@
   (tap-hold-press $tap-time $hold-time
     $hr-hold-key-action
     (multi
-      (t! hr-stick)
-      (t! hr-unstick)
+      (on-press press-vkey vrt-hold)
+      (on-release release-vkey vrt-hold)
+
+      (t! hr-stick) ;; Enable sticky modifiers
+      (t! hr-unstick) ;; Disable sticky modifiers on release
 
       ;; Hold layer
       (switch
@@ -67,7 +72,6 @@
         ((input virtual vrt-typ)) (layer-while-held typography) break
         ((input virtual vrt-fun)) (layer-while-held functions) break
         ((input virtual vrt-wrf)) (layer-while-held workflow) break
-        ((input virtual vrt-nav)) (layer-while-held navigation) break
         ((input virtual vrt-nav-alt)) (layer-while-held navigation-alt) break
         ((input virtual vrt-mouse)) (layer-while-held mouse) break
         ((input virtual vrt-msa)) (layer-while-held mouse-alt) break

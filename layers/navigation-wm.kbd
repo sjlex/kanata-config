@@ -1,0 +1,87 @@
+;; =============================================================================
+;; Layers
+;; =============================================================================
+
+;; Navigation WM
+(deflayer (navigation-wm icon assets\icons\navigation-wm.png)
+  @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
+  •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
+  @nwmh  •      @nwwc  @nwu   @nwwm  @nwt   #||#      @nwt   @nwwm  @nwu   @nwwc  •      @nwmh  •      •
+  @caps  @nwwt  @nwl   @nwd   @nwr   @nwwf  #||#      @nwwf  @nwl   @nwd   @nwr   @nwwt  •             @ret
+  @lsft  •      •      @nwtp  @nwtn  @nwwl  #||#      @nwwl  @nwtp  @nwtn  •      •                    @rsft
+  @lctl  @lmet  @lalt  @spc                 #||#                                                @ralt  @rctl
+)
+
+;; Navigation WM-Panel
+(deflayer (navigation-wm-panel icon assets\icons\navigation-wm-panel.png)
+  @esc   •      •      •      •      •      #||#      •      •      •      •      •      •      •      •
+  •      •      •      •      •      •      #||#      •      •      •      •      •      •      •      @bspc
+  @nwph  •      •      @nwpu  •      •      #||#      •      •      @nwpu  •      •      @nwph  •      •
+  @caps  •      @nwpl  @nwpd  @nwpr  @nwpf  #||#      @nwpf  @nwpl  @nwpd  @nwpr  •      •             @ret
+  @lsft  •      •      •      •      •      #||#      •      •      •      •      •                    @rsft
+  @lctl  @lmet  @lalt  @spc                 #||#                                                @ralt  @rctl
+)
+
+;; =============================================================================
+;; Navigation WM
+;; =============================================================================
+
+(defalias
+  nvwm (layer-switch navigation-wm)
+
+  nwm (layer-switch navigation-wm)
+  nwmh (layer-while-held navigation-wm)
+)
+
+;; Desktop Navigation
+(defalias
+  ;; Desktop Switching
+  ;; S: Move window
+  ;; C-S: Copy window
+  ;; C: Move window (FancyZones)
+  nwr (macro-release-cancel A-4)
+  nwl (macro-release-cancel A-1)
+  nwu (macro-release-cancel A-2)
+  nwd (macro-release-cancel A-3)
+)
+
+(defalias
+  nwt @alt-tab-sticky ;; Task Switcher
+
+  nwtp (multi lmet lsft (unmod (lctl rctl lalt ralt) t)) ;; Taskbar prev
+  nwtn (multi lmet (unmod (lsft rsft lctl rctl lalt ralt) t)) ;; Taskbar next
+
+  nwwl (multi lalt (unmod (lsft rsft lctl rctl lmet rmet) 9)) ;; All windows list
+
+  nwwm (multi lalt (unmod (lsft rsft lctl rctl lmet rmet) -)) ;; Minimize window
+  nwwc (multi lalt (unmod (lsft rsft lctl rctl lmet rmet) =)) ;; Close window
+  nwwf (multi lalt (unmod (lsft rsft lctl rctl lmet rmet) f11)) ;; Maximize window
+  nwwt (multi lalt (unmod (lsft rsft lctl rctl lmet rmet) 0)) ;; Always on top
+)
+
+;; =============================================================================
+;; Navigation WM Panel
+;; =============================================================================
+
+(defalias
+  nvwp (layer-switch navigation-wm-panel)
+
+  nwp (layer-switch navigation-wm-panel)
+  nwph (layer-while-held navigation-wm-panel)
+)
+
+;; Panel Navigation
+(defalias
+  ;; Panel Focus
+  ;; S: Split Panel
+  ;; C: Move Panel
+  ;; A: Resize Panel
+  nwpl (multi F15)
+  nwpr (multi F16)
+  nwpu (multi F13)
+  nwpd (multi F14)
+)
+
+(defalias
+  nwpf (multi lalt lsft (unmod (lctl rctl lmet rmet) f11)) ;; Maximize panel
+)

@@ -17,7 +17,10 @@
 )
 
 (defalias
+  ;; Task Switcher
   alt-tab (multi lalt (unmod (lsft rsft lctl rctl lmet rmet) tab))
+  alt-tab-sticky (multi lctl lalt (unmod (lsft rsft lmet rmet) tab))
+
   window-switch-fast (switch
     ((or (input real lalt) (input real ralt))) tab break
     () @alt-tab break

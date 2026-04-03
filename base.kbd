@@ -27,6 +27,8 @@
 
   vrt-nav nop0
   vrt-nav-alt nop0
+  vrt-nav-wm nop0
+  vrt-nav-wm-panel nop0
 
   vrt-mouse nop0
 )
@@ -51,6 +53,16 @@
   vrt-hr1s lsft
   vrt-hr2s lctl
   vrt-hr3s lalt
+)
+
+;; Hold State
+(defvirtualkeys
+  vrt-hold nop0
+)
+
+;; Navigation WM-Panel Key State
+(defvirtualkeys
+  vrt-nav-wm-panel-key nop0
 )
 
 ;; Virtual nop0-9

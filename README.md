@@ -59,9 +59,11 @@ Features the qPhyx base, specialized layers, and an enhanced home row with stick
 - Language Switching
 - Tab Navigation
 - History Navigation
-- Quick Hotkeys: (сopy, paste, cut, save, undo, redo)
-- Fast Window Control (minimize, close) with AltSnap integration
-- Quick Previous Window Switching
+- Window Manager Navigation
+  - Window / Panel Navigation
+  - Fast Window Control (minimize, close)
+  - Quick Window Switching
+- Quick Hotkeys (сopy, paste, cut, undo, redo)
 - QWERTY Compatibility
 - Game Mode
 - ... and more
