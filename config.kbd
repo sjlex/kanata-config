@@ -32,11 +32,11 @@
   cmd-sleep (cmd "rundll32.exe" powrprof.dll,SetSuspendState 0,1,0)
   cmd-monitor-off (cmd "nircmd.exe" cmdwait 2000 monitor off)
 
-  cmd-sublime-text (cmd "C:\Program Files\Sublime Text\sublime_text.exe" "-n")
-  cmd-qalculate (cmd "C:\Program Files\Qalculate\qalculate-qt.exe")
-  cmd-keepassxc (cmd "C:\Program Files\KeePassXC\KeePassXC.exe")
-  cmd-chrome (cmd "C:\Program Files\Google\Chrome\Application\chrome.exe")
-  cmd-onecommander (cmd "C:\Program Files\OneCommander\OneCommander.exe")
+  cmd-sublime-text (cmd "explorer.exe" "C:\Program Files\Sublime Text\sublime_text.exe")
+  cmd-qalculate (cmd "explorer.exe" "C:\Program Files\Qalculate\qalculate-qt.exe")
+  cmd-keepassxc (cmd "explorer.exe" "C:\Program Files\KeePassXC\KeePassXC.exe")
+  cmd-chrome (cmd "explorer.exe" "C:\Program Files\Google\Chrome\Application\chrome.exe")
+  cmd-onecommander (cmd "explorer.exe" "C:\Program Files\OneCommander\OneCommander.exe")
 
   ;; TODO: Open Obsidian vault and create a unique note in a new window.
   cmd-obsidian-personal-vault (cmd powershell -Command 'Start-Process -FilePath "obsidian://open?vault=personal-vault"')
